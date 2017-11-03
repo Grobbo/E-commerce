@@ -1,8 +1,7 @@
 <html>
 <head>
- <head>
+<title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="style.css">
-</head> 
 
 </head>
 <body>
@@ -21,4 +20,5 @@
                  	<a href="#">Ludvig Isaksson</a>
                 </div class="dropdown">
 	</div>
-</BODY>
+
+</html>
