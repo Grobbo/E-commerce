@@ -3,8 +3,7 @@
 <title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
-</head>
-<body>
+
 <?php
 $servername = "localhost";
 $username = "ecom";
@@ -38,6 +37,7 @@ if ($conn->query($sql2) === TRUE) {
 
 ?>
 
+
  	<div class="dropdown">
 	<button class="dropbtn">Könisar</button>
 		<div class="dropdown-content">
@@ -54,5 +54,4 @@ if ($conn->query($sql2) === TRUE) {
                 </div class="dropdown">
 	</div>
 
-	
 </html>
