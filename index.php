@@ -5,37 +5,9 @@
 
 
 <?php
-$servername = "localhost";
-$username = "ecom";
-$password = "ecom";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully<br/>";
-
-
-$sql = "USE e_commerce;";
-$sql2 = "INSERT INTO users(user_first_name) VALUES ('RIKE_ERIK')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "database chosen correctly<br/>";
-} else {
-    echo "Error choosing database: " . $conn->error;
-}
-
-if ($conn->query($sql2) === TRUE) {
-    echo "Table Persons created successfully<br/>";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-
-
+include "php/add_user.php";
 ?>
+
 
 
  	<div class="dropdown">
@@ -53,5 +25,22 @@ if ($conn->query($sql2) === TRUE) {
                  	<a href="#">Ludvig Isaksson</a>
                 </div class="dropdown">
 	</div>
+
+	<form method="POST">
+		<input type="submit" name="add_user" value="ADD USER" />
+		<input type="text" name="user_fname" id ="user_fname"/>
+
+	</form>
+
+	<?php
+		if(array_key_exists('add_user',$_POST)){
+			$f_name = $_POST["user_fname"];
+			create_new_user($f_name);
+		}
+		
+	?>
+
+
+
 
 </html>
