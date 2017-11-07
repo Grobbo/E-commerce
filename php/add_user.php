@@ -1,5 +1,5 @@
 <?php
-function create_new_user($user_fname,$user_sname){
+function create_new_user($user_username,$user_password,$f_name,$s_name,$address,$email,$postalcode,$country,$city){
 $servername = "localhost";
 $username = "ecom";
 $password = "ecom";
@@ -20,7 +20,7 @@ if ($conn->query($sql) === FALSE) {
 }
 
 	
-$query = "INSERT INTO CUSTOMERS(first_name,last_name,user_name,user_password,address,email,postal_code,country,city) VALUES ('$user_fname','$user_sname','a','b','c','d','e','f','g')";
+$query = "INSERT INTO CUSTOMERS(user_name,user_password,first_name,last_name,address,email,postal_code,country,city) VALUES ('$user_username','$user_password','$f_name','$s_name','$address','$email','$postalcode','$country','$city')";
 if ($conn->query($query) === FALSE) {
     echo "Error: " . $conn->error . "<br/>";
 }	

@@ -25,25 +25,25 @@ include "php/add_user.php";
                 </div class="dropdown">
 	</div>
 
-	<form method="POST">
-		First Name:<input type="text" name="user_fname" id ="user_fname"/>
-		<br/>
-		Surname:<input type="text" name="user_sname" id ="user_sname"/>
-		<br/>
-		<input type="submit" name="add_user" value="ADD USER"/>
-		
 
-	</form>
 
 	<?php
-		if(array_key_exists('add_user',$_POST)){
+		if(array_key_exists('sign_up',$_POST)){
+			$username = $_POST["user_username"];			
+			$password = $_POST["user_password"];
 			$f_name = $_POST["user_fname"];			
-			$s_name = $_POST["user_sname"];			
-			create_new_user($f_name,$s_name);
+			$s_name = $_POST["user_sname"];
+			$address = $_POST["user_address"];			
+			$email = $_POST["user_email"];
+			$postalcode = $_POST["user_postal_code"];
+			$country = $_POST["user_country"];
+			$city = $_POST["user_city"];
+			
+			create_new_user($username,$password,$f_name,$s_name,$address,$email,$postalcode,$country,$city);
 		}
 		
 	?>
-
+	
 	<a href="login.php">Login</a>
 </body>
 </html>
