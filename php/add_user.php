@@ -19,7 +19,7 @@ if ($conn->query($sql) === FALSE) {
     echo "Error choosing database: " . $conn->error;
 }
 
-	
+$user_password = password_hash($user_password, PASSWORD_DEFAULT);
 $query = "INSERT INTO CUSTOMERS(user_name,user_password,first_name,last_name,address,email,postal_code,country,city) VALUES ('$user_username','$user_password','$f_name','$s_name','$address','$email','$postalcode','$country','$city')";
 if ($conn->query($query) === FALSE) {
     echo "Error: " . $conn->error . "<br/>";

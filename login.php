@@ -39,19 +39,23 @@
 	}
 
 	
-
+		
 		if(array_key_exists('sign_in',$_POST)){
-			
-			//var_dump($_POST);
+
 			$us = $_POST["user_name"];
-			$query = "SELECT * FROM CUSTOMERS WHERE user_name='$us';";
+			$pw = $_POST["user_password"];
+			$query = "SELECT user_password FROM CUSTOMERS WHERE user_name = '$us';";
+			
 			$result = $conn->query($query);
 			if ($result->num_rows > 0) {
-				//var_dump($result);
-			    // output data of each row
-			    while($row = $result->fetch_assoc()) {
-				echo "id: " . $row["id"]. " - User Name: " . $row["user_name"]. " Password: " . $row["user_password"]. "<br>";
-			    }
+				$hashed_password = mysqli_fetch_array($result)['user_password'];
+				if (password_verify($pw, $hashed_password)) {
+				    echo"verified";
+				}else{
+				    echo"Not verified"; 
+					
+				}
+			
 			} else {
 			    echo "0 results";
 			}
