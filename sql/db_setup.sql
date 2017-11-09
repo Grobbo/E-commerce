@@ -6,7 +6,7 @@ CREATE TABLE E_COMMERCE.CUSTOMERS(
 	first_name varchar(15) NOT NULL,
 	last_name varchar(15) NOT NULL,
 	user_name varchar(15) NOT NULL UNIQUE,
-	user_password varchar(50) NOT NULL,
+	user_password varchar(60) NOT NULL,
 	address varchar(25) NOT NULL,
 	email varchar(64) NOT NULL,
 	postal_code varchar(15) NOT NULL,
