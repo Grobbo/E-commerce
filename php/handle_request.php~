@@ -4,6 +4,7 @@ function handle_request(){
 	if($_SERVER["REQUEST_METHOD"] == "GET"){	
 		if(array_key_exists('search_string',$_GET)){
 			echo "$_GET[search_string]" . "<= SEARCHED FOR";
+			sql_search_display($_GET['search_string']);
 		}
 		if(array_key_exists('display',$_GET)){
 			switch($_GET['display']){
@@ -47,5 +48,37 @@ function handle_request(){
 		}
 	
 	}	
+}
+
+function sql_search_display($search_str){
+$con = mysqli_connect('localhost','ecom','ecom','E_COMMERCE');
+if (!$con) {
+    die('Could not connect: ' . mysqli_error($con));
+}
+
+mysqli_select_db($con,"ajax_demo");
+$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
+$result = mysqli_query($con,$sql);
+
+echo "<table>
+<tr>
+<th>Category</th>
+<th>Manufacturer</th>
+<th>Description</th>
+<th>Price</th>
+<th>Rating</th>
+</tr>";
+while($row = mysqli_fetch_array($result)) {
+    echo "<tr>";
+    echo "<td>" . $row['category'] . "</td>";
+    echo "<td>" . $row['manufacturer'] . "</td>";
+    echo "<td>" . $row['description'] . "</td>";
+    echo "<td>" . $row['price'] . "</td>";
+    echo "<td>" . $row['rating'] . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
+mysqli_close($con);
+?>
 }	
 ?>
