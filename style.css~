@@ -10,7 +10,11 @@
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: inline;
+    margin:0;
+    padding:0;
+
+
 }
 
 .dropdown-content {
@@ -39,3 +43,6 @@
     background-color: #3e8e41;
 } 
 
+.search_bar{
+	background-color: #3e8e41;
+}
