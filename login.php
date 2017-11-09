@@ -47,10 +47,10 @@
 			$query = "SELECT * FROM CUSTOMERS WHERE user_name='$us';";
 			$result = $conn->query($query);
 			if ($result->num_rows > 0) {
-				var_dump($result);
+				//var_dump($result);
 			    // output data of each row
 			    while($row = $result->fetch_assoc()) {
-				echo "id: " . $row["id"]. " - Name: " . $row["user_name"]. " " . $row["user_password"]. "<br>";
+				echo "id: " . $row["id"]. " - User Name: " . $row["user_name"]. " Password: " . $row["user_password"]. "<br>";
 			    }
 			} else {
 			    echo "0 results";
