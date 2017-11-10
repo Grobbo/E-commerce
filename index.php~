@@ -27,7 +27,7 @@ include "php/handle_request.php";
                 </div class="dropdown">
 	</div>
 	
-	<a href="login.php">Login</a>
+	<a href="login.php" style="padding-left: 10px;">Login</a>
 
 	<form action="index.php" method="GET" style="padding-top: 10px;">
 	Search: <input type="text" name="search_string">

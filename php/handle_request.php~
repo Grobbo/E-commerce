@@ -51,12 +51,12 @@ function handle_request(){
 }
 
 function sql_search_display($search_str){
-$con = mysqli_connect('localhost','ecom','ecom','E_COMMERCE');
+$con = mysqli_connect('localhost','ecom','ecom');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"E_COMMERCE);
+mysqli_select_db($con,"E_COMMERCE");
 $sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
 $result = mysqli_query($con,$sql);
 

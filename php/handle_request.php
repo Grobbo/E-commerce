@@ -24,7 +24,7 @@ function handle_request(){
 		}	
 	}
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		if(array_key_exists('sign_up',$_POST)){  // NEED VALIDATION
+		if(array_key_exists('sign_up',$_POST)){  // NEED VALIDATION IN JAVASCRIPT.
 			$username = $_POST["user_username"];			
 			$password = $_POST["user_password"];
 			$f_name = $_POST["user_fname"];			
@@ -55,30 +55,29 @@ $con = mysqli_connect('localhost','ecom','ecom');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
+	mysqli_select_db($con,"E_COMMERCE");
+	$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
+	$result = mysqli_query($con,$sql);
 
-mysqli_select_db($con,"E_COMMERCE");
-$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
-$result = mysqli_query($con,$sql);
-
-echo "<table>
-<tr>
-<th>Category</th>
-<th>Manufacturer</th>
-<th>Description</th>
-<th>Price</th>
-<th>Rating</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['category'] . "</td>";
-    echo "<td>" . $row['manufacturer'] . "</td>";
-    echo "<td>" . $row['description'] . "</td>";
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['rating'] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-mysqli_close($con);
+	echo "<table>
+	<tr>
+	<th>Category</th>
+	<th>Manufacturer</th>
+	<th>Description</th>
+	<th>Price</th>
+	<th>Rating</th>
+	</tr>";
+	while($row = mysqli_fetch_array($result)) {
+	    echo "<tr>";
+	    echo "<td>" . $row['category'] . "</td>";
+	    echo "<td>" . $row['manufacturer'] . "</td>";
+	    echo "<td>" . $row['description'] . "</td>";
+	    echo "<td>" . $row['price'] . "</td>";
+	    echo "<td>" . $row['rating'] . "</td>";
+	    echo "</tr>";
+	}
+	echo "</table>";
+	mysqli_close($con);
 
 }	
 ?>

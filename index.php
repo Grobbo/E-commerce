@@ -37,5 +37,9 @@ include "php/handle_request.php";
 	<?php
 		handle_request();
 	?>
+
+	<div name="canvas" id="canvas">
+	<!-- DISPLAY RESULTS IN THIS DIV -->
+	</div>
 </body>
 </html>
