@@ -4,7 +4,7 @@ function handle_request(){
 	if($_SERVER["REQUEST_METHOD"] == "GET"){	
 		if(array_key_exists('search_string',$_GET)){
 			echo "$_GET[search_string]" . "<= SEARCHED FOR";
-			sql_search_display($_GET['search_string']);
+			sql_search_display($_GET['search_string'],$_GET['criteria']);
 		}
 		if(array_key_exists('display',$_GET)){
 			switch($_GET['display']){
@@ -50,15 +50,21 @@ function handle_request(){
 	}	
 }
 
-function sql_search_display($search_str){
+function sql_search_display($search_str,$criteria){
 $con = mysqli_connect('localhost','ecom','ecom');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
 	mysqli_select_db($con,"E_COMMERCE");
-	$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
-	$result = mysqli_query($con,$sql);
-
+	
+	if($criteria == 'manufacturer'){
+		$sql="SELECT * FROM PRODUCTS WHERE manufacturer = '".$search_str."'";
+		$result = mysqli_query($con,$sql);	
+	}
+	else if($criteria == 'category'){
+		$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
+		$result = mysqli_query($con,$sql);	
+	}
 	echo "<table>
 	<tr>
 	<th>Category</th>

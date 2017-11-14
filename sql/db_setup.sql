@@ -6,7 +6,7 @@ CREATE TABLE E_COMMERCE.CUSTOMERS(
 	first_name varchar(15) NOT NULL,
 	last_name varchar(15) NOT NULL,
 	user_name varchar(15) NOT NULL UNIQUE,
-	user_password varchar(60) NOT NULL,
+	user_password varchar(255) NOT NULL,
 	address varchar(25) NOT NULL,
 	email varchar(64) NOT NULL,
 	postal_code varchar(15) NOT NULL,
@@ -44,6 +44,14 @@ CREATE TABLE E_COMMERCE.COMMENTS(
 	super_id int,  
 	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id),
 	FOREIGN KEY(super_id) REFERENCES COMMENTS(id)
+);
+
+CREATE TABLE E_COMMERCE.SHOPPING_CART(
+	id int PRIMARY KEY AUTO_INCREMENT,
+	user_id int NOT NULL,
+	product_id int NOT NULL,
+	FOREIGN KEY(user_id) REFERENCES CUSTOMERS(id),
+	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id)
 );
 
 /*

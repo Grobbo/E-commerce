@@ -4,7 +4,7 @@ function handle_request(){
 	if($_SERVER["REQUEST_METHOD"] == "GET"){	
 		if(array_key_exists('search_string',$_GET)){
 			echo "$_GET[search_string]" . "<= SEARCHED FOR";
-			sql_search_display($_GET['search_string']);
+			sql_search_display($_GET['search_string'],$_GET['criteria']);
 		}
 		if(array_key_exists('display',$_GET)){
 			switch($_GET['display']){
@@ -24,7 +24,7 @@ function handle_request(){
 		}	
 	}
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		if(array_key_exists('sign_up',$_POST)){  // NEED VALIDATION
+		if(array_key_exists('sign_up',$_POST)){  // NEED VALIDATION IN JAVASCRIPT.
 			$username = $_POST["user_username"];			
 			$password = $_POST["user_password"];
 			$f_name = $_POST["user_fname"];			
@@ -50,35 +50,39 @@ function handle_request(){
 	}	
 }
 
-function sql_search_display($search_str){
+function sql_search_display($search_str,$criteria){
 $con = mysqli_connect('localhost','ecom','ecom');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
-
-mysqli_select_db($con,"E_COMMERCE");
-$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
-$result = mysqli_query($con,$sql);
-
-echo "<table>
-<tr>
-<th>Category</th>
-<th>Manufacturer</th>
-<th>Description</th>
-<th>Price</th>
-<th>Rating</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['category'] . "</td>";
-    echo "<td>" . $row['manufacturer'] . "</td>";
-    echo "<td>" . $row['description'] . "</td>";
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['rating'] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-mysqli_close($con);
+	mysqli_select_db($con,"E_COMMERCE");
+	if($criteria == 'manufacturer'){
+		$sql="SELECT * FROM PRODUCTS WHERE manufacturer = '".$search_str."'";
+		$result = mysqli_query($con,$sql);	
+	}
+	else if($criteria == 'category'){
+		$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
+		$result = mysqli_query($con,$sql);	
+	}
+	echo "<table>
+	<tr>
+	<th>Category</th>
+	<th>Manufacturer</th>
+	<th>Description</th>
+	<th>Price</th>
+	<th>Rating</th>
+	</tr>";
+	while($row = mysqli_fetch_array($result)) {
+	    echo "<tr>";
+	    echo "<td>" . $row['category'] . "</td>";
+	    echo "<td>" . $row['manufacturer'] . "</td>";
+	    echo "<td>" . $row['description'] . "</td>";
+	    echo "<td>" . $row['price'] . "</td>";
+	    echo "<td>" . $row['rating'] . "</td>";
+	    echo "</tr>";
+	}
+	echo "</table>";
+	mysqli_close($con);
 
 }	
 ?>

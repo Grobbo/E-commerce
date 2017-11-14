@@ -31,6 +31,10 @@ include "php/handle_request.php";
 
 	<form action="index.php" method="GET" style="padding-top: 10px;">
 	Search: <input type="text" name="search_string">
+	<select name="criteria">
+	<option value="category">Category</option>
+	<option value="manufacturer">Manufacturer</option>
+	</select>
 	<input type="submit" value="Search">
 	</form>
 

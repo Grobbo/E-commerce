@@ -31,11 +31,19 @@ include "php/handle_request.php";
 
 	<form action="index.php" method="GET" style="padding-top: 10px;">
 	Search: <input type="text" name="search_string">
+	<select name="criteria">
+	<option value="category">Category</option>
+	<option value="name">Name</option>
+	</select>
 	<input type="submit" value="Search">
 	</form>
 
 	<?php
 		handle_request();
 	?>
+
+	<div name="canvas" id="canvas">
+	<!-- DISPLAY RESULTS IN THIS DIV -->
+	</div>
 </body>
 </html>
