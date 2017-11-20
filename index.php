@@ -1,31 +1,17 @@
 <html>
 <head>
 <title>E-commerce site for tools </title>
-<link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
 
 <?php
+include "navigationbar.php";
 include "php/add_user.php";
 include "php/handle_request.php";
 ?>
 
- 	<div class="dropdown">
-	<button class="dropbtn">Tools</button>
-		<div class="dropdown-content">
-			<a href="index.php?display=all">All</a>
-			<a href="index.php?display=hammers">Hammers</a>
-   		 	<a href="index.php?display=drills">Drills</a>
-   		 	<a href="index.php?display=screwdrivers">Screwdrivers</a>
-  		</div class="dropdown">
-	</div>
-	<div class="dropdown">
-	<button class="dropbtn">Devs</button>
-                  <div class="dropdown-content">
-                	<a href="#">Erik Sundström</a>
-                 	<a href="#">Ludvig Isaksson</a>
-                </div class="dropdown">
-	</div>
+ 	
 	
 	<a href="login.php" style="padding-left: 10px;">Login</a>
 
