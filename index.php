@@ -24,7 +24,7 @@ include "php/add_user.php";
 	<button type="submit" onclick="search_request()" >Search</button>
 	</div>
 
-	<div class="item_container">
+	<div class="canvas" name="canvas" id="canvas">
 		<p id="test"></p>
 	</div>
 

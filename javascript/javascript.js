@@ -14,6 +14,20 @@ function search_request() {
 
 }
 
+//REFACTOR WITH var element = document.createElement("div") and so forth
+/*
+put in canvas div { (for each)
+
+div class item-container
+	div itemtext manufacturer
+	div itemtext category
+	div itemtext description
+	div itemtext price
+	div add to shopping cart
+
+}	
+*/
+
 function itemize_list(list){
  
 	var string = build_top_menu();
