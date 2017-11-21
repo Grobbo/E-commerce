@@ -1,0 +1,38 @@
+.management{
+	background-color:#f2f2f2;
+	width:50%;
+	float:left;
+	border-radius:10px;
+	
+}
+.management input[type=text]{
+	width:100%;
+	height:40px;	
+
+	
+}
+.management input[type=submit]{
+	margin-top:20px;
+	width:100%;
+	height:40px;
+	background-color:#33cc33;
+	border:none;
+	border-radius:8px;
+	
+}
+.management form{
+
+	width:70%;
+	margin:0 auto;
+	padding-bottom:15px;
+	
+}
+
+
+.statistics{
+	background-color:#00ff00;
+	width:50%;
+	height:200px;
+	float:left;
+	text-align:center;
+}
