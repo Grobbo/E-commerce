@@ -2,7 +2,7 @@
 <head>
 <title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="items.css">
-
+<script src="javascript/javascript.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -11,7 +11,7 @@ include "navigationbar.php";
 include "php/add_user.php";
 ?>
 
-<script src="javascript/javascript.js" type="text/javascript"></script>
+
  	
 	
 	<a href="login.php" style="padding-left: 10px;">Login</a>
@@ -24,7 +24,7 @@ include "php/add_user.php";
 	<button type="submit" onclick="search_request()" >Search</button>
 	</div>
 
-	<div class="item_container">
+	<div class="canvas" name="canvas" id="canvas">
 		<p id="test"></p>
 	</div>
 
