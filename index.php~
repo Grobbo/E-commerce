@@ -25,7 +25,7 @@ include "php/add_user.php";
 	</div>
 
 	<div class="item_container">
-		<p id="test"></p>
+		<p id="test"> </p>
 	</div>
 
 	

@@ -23,19 +23,6 @@ CREATE TABLE E_COMMERCE.PRODUCTS(
 	rating float NOT NULL DEFAULT 0.0,
 	num_ratings int NOT NULL DEFAULT 0
 );
-CREATE TABLE E_COMMERCE.ORDERS(
-	order_number int PRIMARY KEY AUTO_INCREMENT,
-	order_date date,
-	customer_id int,
-	FOREIGN KEY(customer_id) REFERENCES CUSTOMERS(id)
-);
-CREATE TABLE E_COMMERCE.ORDERED_PRODUCTS(
-	id int PRIMARY KEY AUTO_INCREMENT,
-	order_number int,
-	product_id int,
-	FOREIGN KEY(order_number) REFERENCES ORDERS(order_number),
-	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id)
-);
 
 CREATE TABLE E_COMMERCE.COMMENTS(
 	id int PRIMARY KEY AUTO_INCREMENT,
@@ -52,6 +39,13 @@ CREATE TABLE E_COMMERCE.SHOPPING_CART(
 	product_id int NOT NULL,
 	FOREIGN KEY(user_id) REFERENCES CUSTOMERS(id),
 	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id)
+);
+
+CREATE TABLE E_COMMERCE.SHIPMENTS(
+	shipment_number int PRIMARY KEY AUTO_INCREMENT,
+	order_date date NOT NULL,
+    shopping_cart_id int NOT NULL,
+	FOREIGN KEY(shopping_cart_id) REFERENCES SHOPPING_CART(id)
 );
 
 /*
@@ -116,10 +110,10 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	quantity,
 	price)
  VALUES ('SAW',
-	'BACHO',
+	'MISC',
 	'METAL SAW',
-	22,
-	349);
+	15,
+	200);
 
 /* SCREWDRIVERS */
 

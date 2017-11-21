@@ -1,0 +1,14 @@
+.item_container{
+
+}
+
+.item_div {
+	width: 100%;
+	text-align: left;
+}
+
+.item_text {
+	width: 25%;
+	display: inline-block;
+
+}
