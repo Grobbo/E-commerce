@@ -2,8 +2,8 @@ function search_request() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
-			var rjson = JSON.parse(this.responseText);	
-			document.getElementById("test").innerHTML = itemize_list(rjson);
+			var rjson = JSON.parse(this.responseText);
+			build_item_list(rjson);	
 		}
 	}
 	xhttp.open("GET", "php/handle_request.php?search_string="
@@ -14,43 +14,94 @@ function search_request() {
 
 }
 
-//REFACTOR WITH var element = document.createElement("div") and so forth
-/*
-put in canvas div { (for each)
+function build_item_list(list){	
 
-div class item-container
-	div itemtext manufacturer
-	div itemtext category
-	div itemtext description
-	div itemtext price
-	div add to shopping cart
-
-}	
-*/
-
-function itemize_list(list){
- 
-	var string = build_top_menu();
-	for(index = 0;index < list.length; ++index){
-		string += '<div class="item_container" onclick="say_hello('+list[index].id+')"' + list[index].id + '>' + 
-		'<div class="item_text"> <p>' + list[index].manufacturer+ '</div>' + 
-		'<div class="item_text"> <p>' + list[index].category + '</div>' +
-		'<div class="item_text"> <p>' + list[index].description + '</div>' +
-		'<div class="item_text"> <p>' + list[index].price + '</div>' +
-		build_add_to_cart_button(list[index].id)+ '</div><br>'; 
+	var node = document.getElementById("canvas");
+	while (node.firstChild) {
+ 	   node.removeChild(node.firstChild);
 	}
-	return string;		
+	
+	top_menu = document.createElement("div");
+	top_menu.setAttribute("class","item_div");
+	
+	top_manu = document.createElement("div");
+	top_manu.setAttribute("class","item_text");
+	top_manu.innerHTML = "Manufacturer";
+	
+	top_cat = document.createElement("div");
+	top_cat.setAttribute("class","item_text");
+	top_cat.innerHTML = "Category";
+
+	top_desc = document.createElement("div");
+	top_desc.setAttribute("class","item_text");
+	top_desc.innerHTML = "Description";
+
+	top_pr = document.createElement("div");
+	top_pr.setAttribute("class","item_text");
+	top_pr.innerHTML = "Price";
+
+	top_menu.appendChild(top_manu);
+	top_menu.appendChild(top_cat);
+	top_menu.appendChild(top_desc);
+	top_menu.appendChild(top_pr);
+	br = document.createElement("br");
+	
+	document.getElementById("canvas").appendChild(top_menu);
+	document.getElementById("canvas").appendChild(br);
+	
+	for(index = 0;index < list.length; index++){
+		
+		base = document.createElement("div");
+		base.setAttribute("id", list[index].id);
+		base.setAttribute("class","item_div");
+		base.setAttribute("onclick",say_hello(list[index].id)); //byts till att visa info om item 
+		
+		manu = document.createElement("div");
+		manu.setAttribute("class","item_text");
+		manu.innerHTML = list[index].manufacturer;
+
+		cat = document.createElement("div");
+		cat.setAttribute("class","item_text");
+		cat.innerHTML = list[index].category;
+
+		desc = document.createElement("div");
+		desc.setAttribute("class","item_text");
+		desc.innerHTML = list[index].description;
+		
+		pr = document.createElement("div");
+		pr.setAttribute("class","item_text");
+		pr.innerHTML = list[index].price;
+
+		cartbutton = document.createElement("div");
+		cartbutton.setAttribute("class","item_text");
+			form = document.createElement("form");
+			form.setAttribute("action","php/cart.php");
+			form.setAttribute("method","POST");
+				input = document.createElement("input");
+				input.setAttribute("name","product_id");
+				input.setAttribute("type","hidden");
+				input.setAttribute("value",list[index].id);
+				button = document.createElement("button");
+				button.setAttribute("class","add_button");
+				button.setAttribute("type","submit");
+				button.innerHTML = "Add to Cart";
+			form.appendChild(input);
+			form.appendChild(button);
+		cartbutton.appendChild(form);
+		
+		base.appendChild(manu);
+		base.appendChild(cat);
+		base.appendChild(desc);
+		base.appendChild(pr);
+		base.appendChild(cartbutton);
+		
+		
+		document.getElementById("canvas").appendChild(base);
+		document.getElementById("canvas").appendChild(br);
+	}
 }
 
-function build_top_menu(){
-	return '<div class="item_div"><div class="item_text"><p>Manufacturer</p></div><div class="item_text"><p>Category</p></div><div class="item_text"><p>Description</p></div><div class="item_text"><p>Price</p></div></div>';
-}
 
-
-//need to be processed
-function build_add_to_cart_button (id){
-	return '<div class="item_text"><form action="php/cart.php" method="POST"><input name="product_id" type="hidden" value="' + id +'"/><button class="add_button" type="submit">Add to Cart</button></form></div>';
-}
 
 function say_hello(id){
 	console.log("Item ID "+ id);
