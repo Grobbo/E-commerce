@@ -5,12 +5,17 @@
 	border-radius:10px;
 	
 }
-.management input[type=text]{
+.add_product_text{
 	width:100%;
 	height:40px;	
-
-	
 }
+
+.edit_table_text{
+	width:80%;
+	height:30px;
+	text-align:center;
+}
+
 .management input[type=submit]{
 	margin-top:20px;
 	width:100%;
@@ -20,12 +25,31 @@
 	border-radius:8px;
 	
 }
+
+
 .management form{
 
-	width:70%;
+	width:100%;
 	margin:0 auto;
 	padding-bottom:15px;
 	
+}
+.management table,tr{
+	border-collapse:collapse;
+	border:1px solid;
+}
+.management th{
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#33cc33;
+	text-align:center;
+}
+
+.management td{
+	text-align:center;
+}
+.management tr:nth-child(odd){
+	background-color:#ffffff;
 }
 
 
