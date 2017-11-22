@@ -20,60 +20,29 @@ function build_item_list(list){
 	while (node.firstChild) {
  	   node.removeChild(node.firstChild);
 	}
-	
-	top_menu = document.createElement("div");
-	top_menu.setAttribute("class","item_div");
-	
-	top_manu = document.createElement("div");
-	top_manu.setAttribute("class","item_text");
-	top_manu.innerHTML = "Manufacturer";
-	
-	top_cat = document.createElement("div");
-	top_cat.setAttribute("class","item_text");
-	top_cat.innerHTML = "Category";
 
-	top_desc = document.createElement("div");
-	top_desc.setAttribute("class","item_text");
-	top_desc.innerHTML = "Description";
-
-	top_pr = document.createElement("div");
-	top_pr.setAttribute("class","item_text");
-	top_pr.innerHTML = "Price";
-
-	top_menu.appendChild(top_manu);
-	top_menu.appendChild(top_cat);
-	top_menu.appendChild(top_desc);
-	top_menu.appendChild(top_pr);
 	br = document.createElement("br");
-	
-	document.getElementById("canvas").appendChild(top_menu);
-	document.getElementById("canvas").appendChild(br);
 	
 	for(index = 0;index < list.length; index++){
 		
 		base = document.createElement("div");
 		base.setAttribute("id", list[index].id);
 		base.setAttribute("class","item_div");
-		base.setAttribute("onclick",say_hello(list[index].id)); //byts till att visa info om item 
-		
-		manu = document.createElement("div");
-		manu.setAttribute("class","item_text");
-		manu.innerHTML = list[index].manufacturer;
+		 
+		img = document.createElement("img");
+		img.src ="/images/nia.png"; //get from db source path to img
+		img.setAttribute("height","50");
+		img.setAttribute("width", "50");
+		img.setAttribute("alt", "NO IMAGE");
 
-		cat = document.createElement("div");
-		cat.setAttribute("class","item_text");
-		cat.innerHTML = list[index].category;
+		cat_desc = document.createElement("div");
+		cat_desc.setAttribute("class","item_text");
+		cat_desc.innerHTML = list[index].category + "<br>" + list[index].manufacturer + "<br>" +list[index].description;
 
-		desc = document.createElement("div");
-		desc.setAttribute("class","item_text");
-		desc.innerHTML = list[index].description;
-		
 		pr = document.createElement("div");
 		pr.setAttribute("class","item_text");
-		pr.innerHTML = list[index].price;
+		pr.innerHTML = "Price: " + list[index].price + " SEK";
 
-		cartbutton = document.createElement("div");
-		cartbutton.setAttribute("class","item_text");
 			form = document.createElement("form");
 			form.setAttribute("action","php/cart.php");
 			form.setAttribute("method","POST");
@@ -87,14 +56,39 @@ function build_item_list(list){
 				button.innerHTML = "Add to Cart";
 			form.appendChild(input);
 			form.appendChild(button);
-		cartbutton.appendChild(form);
+		pr.appendChild(form);
 		
-		base.appendChild(manu);
-		base.appendChild(cat);
-		base.appendChild(desc);
+		//TODO RATING..
+		rat = document.createElement("div");
+		rat.setAttribute("class","item_text");
+			
+
+		com_write = document.createElement("div");
+		com_write.setAttribute("class","item_text");
+			link_write_com = document.createElement("a");
+			link_read_com = document.createElement("a");
+			link_write_com.setAttribute("href","#");
+			link_write_com.setAttribute("id","writeLink");
+			link_write_com.setAttribute("title","Write Comment");
+			link_write_com.setAttribute("onclick","func();return false")
+			link_write_com.innerHTML = "Write Comment ";
+		com_write.appendChild(link_write_com);
+
+		com_read = document.createElement("div");
+		com_read.setAttribute("class","item_text");
+			link_read_com.setAttribute("href","#");
+			link_read_com.setAttribute("id","writeLink");
+			link_write_com.setAttribute("title","Read Comment");
+			link_read_com.setAttribute("onclick","func();return false")
+			link_read_com.innerHTML = "Read Comment ";
+		com_read.appendChild(link_read_com);
+
+		base.appendChild(img);
+		base.appendChild(cat_desc);
 		base.appendChild(pr);
-		base.appendChild(cartbutton);
-		
+		base.appendChild(com_write);
+		base.appendChild(com_read);
+		base.onclick = console_log(list[index].id); //byts till att visa info om item
 		
 		document.getElementById("canvas").appendChild(base);
 		document.getElementById("canvas").appendChild(br);
@@ -103,6 +97,6 @@ function build_item_list(list){
 
 
 
-function say_hello(id){
+function console_log(id){
 	console.log("Item ID "+ id);
 }

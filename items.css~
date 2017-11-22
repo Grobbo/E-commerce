@@ -3,12 +3,18 @@
 }
 
 .item_div {
+	background-color: #444444;
+	margin-bottom : 10px;
+	margin-top : 10px;	
+	border-style: solid;
+	border-width: thin;
+	border-radius: 0.5em;
 	width: 100%;
 	text-align: left;
 }
 
 .item_text {
-	width: 25%;
+	width: 20%;
 	display: inline-block;
 
 }
