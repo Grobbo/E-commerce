@@ -57,32 +57,32 @@ function build_item_list(list){
 			form.appendChild(input);
 			form.appendChild(button);
 		pr.appendChild(form);
+		
+		//TODO RATING..
+		rat = document.createElement("div");
+		rat.setAttribute("class","item_text");
+		rat.innerHTML = "RatingAvg: " + "5" + "<br>" + "Number of Ratings :" + "200";
+			
 
-		com_write = document.createElement("div");
-		com_write.setAttribute("class","item_text");
-			link_write_com = document.createElement("a");
-			link_read_com = document.createElement("a");
-			link_write_com.setAttribute("href","#");
-			link_write_com.setAttribute("id","writeLink");
-			link_write_com.setAttribute("title","Write Comment");
-			link_write_com.setAttribute("onclick","func();return false")
-			link_write_com.innerHTML = "Write Comment ";
-		com_write.appendChild(link_write_com);
+		com = document.createElement("div");
+		com.setAttribute("class","comment_container");
+			write_com = document.createElement("button");
+			write_com.setAttribute("type", "button");
+			write_com.setAttribute("onclick", console_log("BUTTON WRITE"));
+			write_com.innerHTML = "Write Comment";
+		com.appendChild(write_com);
 
-		com_read = document.createElement("div");
-		com_read.setAttribute("class","item_text");
-			link_read_com.setAttribute("href","#");
-			link_read_com.setAttribute("id","writeLink");
-			link_write_com.setAttribute("title","Read Comment");
-			link_read_com.setAttribute("onclick","func();return false")
-			link_read_com.innerHTML = "Read Comment ";
-		com_read.appendChild(link_read_com);
+			read_com = document.createElement("button");
+			read_com.setAttribute("type", "button");
+			read_com.setAttribute("onclick", console_log("BUTTON READ"));
+			read_com.innerHTML = "Read Comment";
+		com.appendChild(read_com);
 
 		base.appendChild(img);
 		base.appendChild(cat_desc);
 		base.appendChild(pr);
-		base.appendChild(com_write);
-		base.appendChild(com_read);
+		base.appendChild(com);
+		base.appendChild(rat);
 		base.onclick = console_log(list[index].id); //byts till att visa info om item
 		
 		document.getElementById("canvas").appendChild(base);
