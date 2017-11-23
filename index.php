@@ -2,7 +2,7 @@
 <head>
 <title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="items.css">
-<script src="js/javascript.js" type="text/javascript"></script>
+<script src="js/search.js" type="text/javascript"></script>
 </head>
 <body>
 

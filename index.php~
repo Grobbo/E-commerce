@@ -25,7 +25,6 @@ include "php/add_user.php";
 	</div>
 
 	<div class="canvas" name="canvas" id="canvas">
-		<p id="test"></p>
 	</div>
 
 	
