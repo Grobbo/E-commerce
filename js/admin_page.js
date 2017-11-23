@@ -10,8 +10,7 @@ function selectForm(){
 	}
 }
 
-function product_request(){//change name... copied from index.php...
-	alert("tja");
+function product_request(req_type){			
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
@@ -19,7 +18,8 @@ function product_request(){//change name... copied from index.php...
 			document.getElementById("edit_prod_result").innerHTML = makeTable(rjson);
 		}
 	}
-	xhttp.open("GET", "php/admin_request.php",true);
+	
+	xhttp.open("GET", "php/admin_request.php?request_type=" + req_type ,true);
 	xhttp.send();
 }
 
@@ -65,7 +65,7 @@ function editProduct(id){
 	document.getElementById(id).innerHTML = "OK";
 	document.getElementById(id).onclick = function(){confirmEdit(id)};
 }
-function confirmEdit(id){
+function confirmEdit(id){				//json req instead...
 	table = document.getElementById("tableId");
 	for(i=1;i<table.rows[id].cells.length -2;i++){
 		txtVal = table.rows[id].cells[i].getElementsByTagName("input")[0].value;
