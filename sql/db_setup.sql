@@ -28,7 +28,7 @@ CREATE TABLE E_COMMERCE.COMMENTS(
 	id int PRIMARY KEY AUTO_INCREMENT,
 	product_id int NOT NULL,
 	comment_text varchar(255),
-	super_id int,  
+	super_id int DEFAULT NULL,  
 	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id),
 	FOREIGN KEY(super_id) REFERENCES COMMENTS(id)
 );
@@ -140,3 +140,27 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	'FLAT SCREWDRIVER',
 	45,
 	19);
+
+INSERT INTO E_COMMERCE.PRODUCTS(
+	category,
+	manufacturer,
+	description,
+	quantity,
+	price)
+ VALUES ('HAMMER',
+	'BACHO',
+	'USED FOR HEAVY-DUTY HAMMERING',
+	7,
+	28);
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    comment_text)
+ VALUES (1,
+	"GREAT");
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    comment_text)
+ VALUES (1,
+	"SUPER SAW");

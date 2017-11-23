@@ -1,14 +1,31 @@
-.item_container{
-
+.canvas{
+	display:inline-block;
 }
+
+.item_container{
+	background-color: #cce8d0;
+	margin-bottom : 10px;
+	margin-top : 10px;	
+	border-style: solid;
+	border-width: thin;
+	border-radius: 0.5em;
+	width: 50%;
+	text-align: left;
+	display:inline-block;
+	position:relative
+}	
 
 .item_div {
-	width: 100%;
-	text-align: left;
-}
-
-.item_text {
+	position: relative;
+	display:inline-block;
 	width: 25%;
-	display: inline-block;
+
+}
+.comment_icon {
+	margin: 10px;
+	display:inline-block;
+	text-align: right;
+}
+.comment_container {
 
 }

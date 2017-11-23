@@ -3,7 +3,7 @@ function search_request() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
 			var rjson = JSON.parse(this.responseText);	
-			document.getElementById("test").innerHTML = itemize_list(rjson);
+			document.getElementById("canvas").innerHTML = itemize_list(rjson);
 		}
 	}
 	xhttp.open("GET", "php/handle_request.php?search_string="
