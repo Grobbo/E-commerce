@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){	//lägg till -- if(array_key_exists('search_string',$_GET)){
 	
@@ -8,7 +8,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){	//lägg till -- if(array_key_exists('se
 				product_json();
 				break;
 			case "EDIT":
-				echo "EDIT";
+				edit_product($_GET['id'],$_GET['cat'],$_GET['man'],$_GET['desc'],$_GET['price'],$_GET['qty']);
+				product_json();	
+				break;
+			case "DELETE":
+				delete_product($_GET['id']);
+				product_json();
 				break;
 		}
 
@@ -40,13 +45,15 @@ function product_json(){
 	mysqli_close($con);
 }
 
-function edit_product($id){
+function edit_product($id,$cat,$man,$desc,$price,$qty){
+	console.log("edit");
 	$con = db_connect();
 
-	$sql = "UPDATE PRODUCTS SET description = 'test' WHERE id ='$id'";	
+	$sql = "UPDATE PRODUCTS SET category = '$cat',manufacturer = '$man', description = '$desc',price='$price',quantity='$qty'  WHERE id ='$id'";	
 	mysqli_query($con,$sql);
-
-	//prodct_json()		?
+	mysqli_close($con);
+	
+		
 }
 
 function delete_product($id){
@@ -54,8 +61,8 @@ function delete_product($id){
 
 	$sql = "DELETE FROM PRODUCTS WHERE id = '$id' ";
 	mysqli_query($con,$sql);
-
-	//product_json()	?
+	mysqli_close($con);
+	
 }
 
 

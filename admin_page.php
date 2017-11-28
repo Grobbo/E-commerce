@@ -29,7 +29,6 @@ include("navigationbar.php");
 
 	<form id="edit_prod_form">		
 		<p id="edit_prod_result"></p>	<!--placeholder for javascript result -->
-		<p id="test123"></p>
 	</form>
 
 	</div>
