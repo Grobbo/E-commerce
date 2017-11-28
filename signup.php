@@ -2,10 +2,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="login.css">
 </head>
-<body>	
-<?php
-include "navigationbar.php";
-?>
+<body>
+	
 <div class='login'>
 	<form method='POST' name='signup_form' action='php/handle_request.php'>
 		Username<br/>

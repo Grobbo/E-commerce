@@ -2,10 +2,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="login.css">
 </head>
-<body>	
-<?php
-include "navigationbar.php";
-?>
+<body>
+	
 <div class='login'>
 	<form method='POST' name='signup_form' action='php/handle_request.php'>
 		Username<br/>
@@ -36,7 +34,7 @@ include "navigationbar.php";
 		<input type = 'TEXT' name='user_city'/>
 		<br/>
 		<br/>
-		<input type='SUBMIT' name='sign_up' value='Sign up'/> 
+		<input type='SUBMIT' name='signup_form' value='Sign up'/> 
 	</form>
 	</div>
 
