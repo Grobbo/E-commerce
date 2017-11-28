@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 <title>E-commerce site for tools </title>
@@ -11,10 +14,6 @@ include "navigationbar.php";
 include "php/add_user.php";
 ?>
 
-
- 	
-	
-	<a href="login.php" style="padding-left: 10px;">Login</a>
 	<div name="search" id="search" style="padding-top: 10px;">
 	Search: <input type="text" onkeypress=" if (event.keyCode==13) search_request();" name="search_string" id="search_string">
 	<select name="criteria" id="criteria">

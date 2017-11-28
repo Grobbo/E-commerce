@@ -29,7 +29,6 @@ mysqli_select_db($conn,$database);
 			$hashed_password = mysqli_fetch_array($result)['user_password'];
 			if (password_verify($pw, $hashed_password)) {
 				$_SESSION['u_id'] = $us;
-				//add more parameters to session on demand.
 				header("Location: index.php");
 				exit();
 			}else{

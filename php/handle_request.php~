@@ -1,4 +1,7 @@
+
+
 <?php
+include 'add_user.php';
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){	
 	if(array_key_exists('search_string',$_GET)){
@@ -23,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }	
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-	if(array_key_exists('sign_up',$_POST)){  // NEED VALIDATION IN JAVASCRIPT.
+	if(array_key_exists('signup_form',$_POST)){  // NEED VALIDATION IN JAVASCRIPT.
 		$username = $_POST["user_username"];			
 		$password = $_POST["user_password"];
 		$f_name = $_POST["user_fname"];			
@@ -43,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				$postalcode,
 				$country,
 				$city);
-		echo "USER CREATED";
+		
 	}
 
 }	
