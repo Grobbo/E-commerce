@@ -36,7 +36,7 @@ include "navigationbar.php";
 		<input type = 'TEXT' name='user_city'/>
 		<br/>
 		<br/>
-		<input type='SUBMIT' name='signup_form' value='Sign up'/> 
+		<input type='SUBMIT' name='sign_up' value='Sign up'/> 
 	</form>
 	</div>
 

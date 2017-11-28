@@ -91,8 +91,6 @@ function build_item_list(list){
 		comment_icon.setAttribute("height","50");
 		comment_icon.setAttribute("width", "50");
 		comment_icon.setAttribute("alt", "NO IMAGE");
-		
-		rat.appendChild(comment_icon);
 	
 		comment_box = document.createElement("div");
 		comment_box.setAttribute("id","comment_container");
@@ -102,6 +100,7 @@ function build_item_list(list){
 		base.appendChild(cat_desc);
 		base.appendChild(pr);
 		base.appendChild(rat);
+		base.appendChild(comment_icon);
 		base.appendChild(comment_box);
 	
 		document.getElementById("canvas").appendChild(base);

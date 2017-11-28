@@ -19,26 +19,26 @@
                  	<a href="#">Ludvig Isaksson</a>
                 </div class="dropdown">
 	</div>
-	
+	<form class="dropdownform" action="php/sign_out.php" method="POST">
+	<button type="submit" name="submit">Sign out</button>
+	</form>
 </div>
 
 
 <?php
 	
 	if(isset($_SESSION['u_id'])){
-		echo '<form class="dropdownform" action="php/sign_out.php" method="POST">
-		<button type="submit" name="submit">Sign out</button>
-		</form>';
+		echo "SESSION";
 		
 	}else{
 		echo '<form class="dropdownform" action="login.php" method="POST">
 		<input type="text" name="user_name" placeholder="Username">
 		<input type="text" name="user_password" placeholder="Password">
 		<button type="submit" name="sign_in">Log in</button>
-		</form>
-		<form class="dropdown" action="signup.php">	
+	</form>
+	<form class="dropdown" action="signup.php">	
 		<button type="submit">Register user</button>
-		</form>
+	</form>
 	';
 	}
 
