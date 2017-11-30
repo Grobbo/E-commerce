@@ -21,8 +21,8 @@ CREATE TABLE E_COMMERCE.PRODUCTS(
 	quantity int NOT NULL CHECK(quantity>=0),
 	price float NOT NULL CHECK(price>0),
 	rating float NOT NULL DEFAULT 0.0,
-	num_ratings int NOT NULL DEFAULT 0
-
+	num_ratings int NOT NULL DEFAULT 0,
+    image varchar(256) DEFAULT '/images/nia.png'
 );
 
 CREATE TABLE E_COMMERCE.SHIPMENTS(
@@ -46,8 +46,8 @@ CREATE TABLE E_COMMERCE.COMMENTS(
 	product_id int NOT NULL,
 	comment_text varchar(255),
 	super_id int DEFAULT NULL,  
-	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id) ON DELETE CASCADE,
-	FOREIGN KEY(super_id) REFERENCES COMMENTS(id) ON DELETE CASCADE
+	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id),
+	FOREIGN KEY(super_id) REFERENCES COMMENTS(id)
 );
 
 CREATE TABLE E_COMMERCE.SHOPPING_CART(
@@ -70,27 +70,25 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	description,
 	quantity,
 	price,
-	rating)
+    image)
  VALUES ('SAW',
 	'BORSCH',
 	'USED FOR FINE SAWING',
 	4,
 	100,
-	4);
+    '/images/fine_saw.png');
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
 	manufacturer,
 	description,
 	quantity,
-	price,
-	rating)
+	price)
  VALUES ('SAW',
 	'MAKITA',
 	'USED FOR HEAVY-DUTY SAWING',
 	7,
-	250,
-	5);
+	250);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
@@ -109,14 +107,12 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	manufacturer,
 	description,
 	quantity,
-	price,
-	rating)
+	price)
  VALUES ('SAW',
 	'BACHO',
 	'METAL SAW',
 	22,
-	349,
-	5);
+	349);
 /*
 
 */

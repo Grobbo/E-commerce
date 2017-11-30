@@ -55,7 +55,7 @@ function build_item_list(list){
 		 
 		img = document.createElement("img");
 		img.setAttribute("class","image");
-		img.src ="/images/nia.png"; //get from db source path to img
+		img.src =list[index].image; //get from db source path to img
 		img.setAttribute("alt", "NO IMAGE");
 
 		cat_desc = document.createElement("div");
@@ -95,6 +95,7 @@ function build_item_list(list){
 		comment_box = document.createElement("div");
 		comment_box.setAttribute("id","comment_container");
 		comment_box.setAttribute("class","comment_container");
+		comment_box.setAttribute("name","comment_container");
 
 		base.appendChild(img);
 		base.appendChild(cat_desc);
@@ -110,16 +111,16 @@ function build_item_list(list){
 
 function comment_div_builder(commentsJson){
 	if(commentsJson.length > 0){	
-		comment = document.getElementById(commentsJson[0].product_id);
-		p = document.createElement("p");
-		var test = "";
-		for(index = 0;index < commentsJson.length; index++){	
-			
-			test += "Test comment on tool id:" +commentsJson[index].product_id + "<br> Comment--> " + commentsJson[index].comment_text + "<br>";		
+		comment = document.getElementById(commentsJson[0].product_id).lastChild;
+		while (comment.firstChild) {
+    			comment.removeChild(myNode.firstChild);
 		}
-	p.innerHTML = test;
-	comment.appendChild(p);
-		
+		for(index = 0;index < commentsJson.length; index++){	
+		commentdiv = document.createElement("div");
+		commentdiv.setAttribute("class","comments");
+		commentdiv.innerHTML = commentsJson[index].comment_text + "<br>"; 
+		comment.appendChild(commentdiv);
+		}
 	}
 }
 
