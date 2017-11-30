@@ -11,7 +11,7 @@ include("navigationbar.php");
 	<div class="management">
 	<select id="select_form" onchange="selectForm()">
 		<option value="prod_form" >Add Product</option>		<!--Value matches form id -->
-		<option value="edit_prod_form" onclick="product_request()">Edit Product</option>
+		<option value="edit_prod_form" onclick="product_request('UPDATE')">Edit Product</option>
 		
 	</select>
 
@@ -29,7 +29,6 @@ include("navigationbar.php");
 
 	<form id="edit_prod_form">		
 		<p id="edit_prod_result"></p>	<!--placeholder for javascript result -->
-		<p id="test123"></p>
 	</form>
 
 	</div>

@@ -53,9 +53,8 @@ function build_item_list(list){
 			}
 		 
 		img = document.createElement("img");
+		img.setAttribute("class","image");
 		img.src ="/images/nia.png"; //get from db source path to img
-		img.setAttribute("height","50");
-		img.setAttribute("width", "50");
 		img.setAttribute("alt", "NO IMAGE");
 
 		cat_desc = document.createElement("div");
