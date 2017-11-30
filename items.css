@@ -39,13 +39,22 @@
 }
 .comment_container {
 	background-color:#FFFFFF;
+	border-style: solid;
+	border-width: thin;
+	border-radius: 0.5em;
 	
 	
 }
 .comments {
 	background-color:#FFFFFF;
 	size:auto;
-	margin-left: 20px;
+	
 	font-size:20;
+	padding: 10px;
+	border-radius: 0.5em;
 }
+.comments:nth-child(even){
+	background-color:#eeeeee;
+}
+
 
