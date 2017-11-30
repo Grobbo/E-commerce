@@ -84,8 +84,10 @@ function confirmEdit(id){
 }
 
 function deleteProduct(id){
-	alert("delete on id:"+id);
-	product_request("DELETE",id);
+	if(confirm("Are you sure you want to delete product?")){
+		product_request("DELETE",id);
+	}
+	
 }
 
 function getCellTextVal(table,id,cell){
