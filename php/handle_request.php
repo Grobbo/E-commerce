@@ -5,7 +5,8 @@ include 'add_user.php';
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){	
 	if(array_key_exists('search_string',$_GET)){
-		sql_search_display($_GET['search_string'],$_GET['criteria']);
+		
+		sql_search_display($_GET['search_string'],$_GET['criteria'],$_GET['sortBy']);
 	}
 	if(array_key_exists('display',$_GET)){
 		switch($_GET['display']){
@@ -26,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }	
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-	if(array_key_exists('signup_form',$_POST)){  // NEED VALIDATION IN JAVASCRIPT.
+	if(array_key_exists('signup_form',$_POST)){
 		$username = $_POST["user_username"];			
 		$password = $_POST["user_password"];
 		$f_name = $_POST["user_fname"];			
@@ -52,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }	
 
 
-function sql_search_display($search_str,$criteria){
+function sql_search_display($search_str,$criteria,$sort){
 $con = mysqli_connect('localhost','ecom','ecom');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
@@ -60,11 +61,11 @@ if (!$con) {
 	mysqli_select_db($con,"E_COMMERCE");
 	
 	if($criteria == 'manufacturer'){
-		$sql="SELECT * FROM PRODUCTS WHERE manufacturer = '".$search_str."'";
+		$sql="SELECT * FROM PRODUCTS WHERE manufacturer = '$search_str' ORDER BY $sort;";
 		$result = mysqli_query($con,$sql);	
 	}
 	else if($criteria == 'category'){
-		$sql="SELECT * FROM PRODUCTS WHERE category = '".$search_str."'";
+		$sql="SELECT * FROM PRODUCTS WHERE category = '$search_str' ORDER BY $sort";
 		$result = mysqli_query($con,$sql);	
 	}
 	$row_array = array();

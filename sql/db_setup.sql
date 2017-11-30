@@ -59,24 +59,28 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,
+	rating)
  VALUES ('SAW',
 	'BORSCH',
 	'USED FOR FINE SAWING',
 	4,
-	100);
+	100,
+	4);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,
+	rating)
  VALUES ('SAW',
 	'MAKITA',
 	'USED FOR HEAVY-DUTY SAWING',
 	7,
-	250);
+	250,
+	5);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
@@ -95,12 +99,14 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,
+	rating)
  VALUES ('SAW',
 	'BACHO',
 	'METAL SAW',
 	22,
-	349);
+	349,
+	5);
 /*
 
 */

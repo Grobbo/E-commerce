@@ -20,6 +20,13 @@ include "php/add_user.php";
 	<option value="category">Category</option>
 	<option value="manufacturer">Manufacturer</option>
 	</select>
+	Sorted by:
+	<select name="sortBy" id="sortBy">
+		<option value="price">Price(Ascending)</option>
+		<option value="price desc">Price(Descending)</option>
+		<option value="rating desc">Rating</option>
+	</select>
+
 	<button type="submit" onclick="search_request()" >Search</button>
 	</div>
 

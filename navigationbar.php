@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="style.css">
-<script src="js/nav.js" type="text/javascript"></script>
 
 <div class="header" id="header">
 	<a href="index.php" class="dropbtn">Home</a>
@@ -24,7 +23,7 @@
 
 
 <?php
-	
+	session_start();
 	if(isset($_SESSION['u_id'])){
 		echo '<form class="dropdownform" action="php/sign_out.php" method="POST">
 		<button type="submit" name="submit">Sign out</button>

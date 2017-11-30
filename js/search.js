@@ -3,13 +3,14 @@ function search_request() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
 			var rjson = JSON.parse(this.responseText);
-			build_item_list(rjson);	
+			build_item_list(rjson);
+				
 		}
 	}
 	xhttp.open("GET", "php/handle_request.php?search_string="
 	+ document.getElementById("search_string").value
 	+"&criteria="+document.getElementById("criteria").value
-	,true);
+	+"&sortBy="+document.getElementById("sortBy").value,true);
 	xhttp.send();
 
 }
@@ -83,7 +84,7 @@ function build_item_list(list){
 		//TODO RATING..
 		rat = document.createElement("div");
 		rat.setAttribute("class","item_div");
-		rat.innerHTML = "RatingAvg: " + "5" + "<br>" + "Number of Ratings :" + "200";
+		rat.innerHTML = "RatingAvg: " + list[index].rating + "<br>" + "Number of Ratings :" + "200";	//TODO Change from 200 to ...
 		
 		comment_icon = document.createElement("img");
 		comment_icon.src ="/images/comments.png";
