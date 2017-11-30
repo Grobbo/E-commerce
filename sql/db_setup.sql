@@ -24,6 +24,22 @@ CREATE TABLE E_COMMERCE.PRODUCTS(
 	num_ratings int NOT NULL DEFAULT 0
 );
 
+CREATE TABLE E_COMMERCE.SHIPMENTS(
+	shipment_id int PRIMARY KEY AUTO_INCREMENT,
+	order_date date NOT NULL,
+	customer int NOT NULL,
+	FOREIGN KEY(customer) REFERENCES CUSTOMERS(id)
+);
+
+CREATE TABLE E_COMMERCE.ORDERS(
+	id int PRIMARY KEY AUTO_INCREMENT,
+	product_id int NOT NULL,
+	quantity int NOT NULL,
+	shipment_id int NOT NULL,
+	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id),
+	FOREIGN KEY(shipment_id) REFERENCES SHIPMENTS(shipment_id)
+);
+
 CREATE TABLE E_COMMERCE.COMMENTS(
 	id int PRIMARY KEY AUTO_INCREMENT,
 	product_id int NOT NULL,
@@ -37,15 +53,9 @@ CREATE TABLE E_COMMERCE.SHOPPING_CART(
 	id int PRIMARY KEY AUTO_INCREMENT,
 	user_id int NOT NULL,
 	product_id int NOT NULL,
+	quantity int NOT NULL,
 	FOREIGN KEY(user_id) REFERENCES CUSTOMERS(id),
 	FOREIGN KEY(product_id) REFERENCES PRODUCTS(id)
-);
-
-CREATE TABLE E_COMMERCE.SHIPMENTS(
-	shipment_number int PRIMARY KEY AUTO_INCREMENT,
-	order_date date NOT NULL,
-    shopping_cart_id int NOT NULL,
-	FOREIGN KEY(shopping_cart_id) REFERENCES SHOPPING_CART(id)
 );
 
 /*
