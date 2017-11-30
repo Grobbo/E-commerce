@@ -70,13 +70,15 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	description,
 	quantity,
 	price,
-    image)
+    	image,
+	rating)
  VALUES ('SAW',
 	'BORSCH',
 	'USED FOR FINE SAWING',
 	4,
 	100,
-    '/images/fine_saw.png');
+    '/images/fine_saw.png',
+	2);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
