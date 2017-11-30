@@ -39,6 +39,9 @@
 }
 .comment_container {
 	background-color:#FFFFFF;
+	border-style: solid;
+	border-width: thin;
+	border-radius: 0.5em;
 	
 	
 }
@@ -47,5 +50,6 @@
 	size:auto;
 	margin-left: 20px;
 	font-size:20;
+	border-radius: 0.5em;
 }
 

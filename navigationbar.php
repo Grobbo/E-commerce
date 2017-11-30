@@ -32,7 +32,7 @@
 	}else{
 		echo '<form class="dropdownform" action="login.php" method="POST">
 		<input type="text" name="user_name" placeholder="Username">
-		<input type="text" name="user_password" placeholder="Password">
+		<input type="password" name="user_password" placeholder="Password">
 		<button type="submit" name="sign_in">Log in</button>
 		</form>
 		<form class="dropdown" action="signup.php">	
