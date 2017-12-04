@@ -36,8 +36,10 @@
 
 
 <?php
-	session_start();
-	if(isset($_SESSION['u_id'])){
+	if(!isset($_SESSION)){ 
+        session_start(); 
+	} 
+	if(isset($_SESSION['u_name'])){
 		echo '<form class="dropdownform" action="php/sign_out.php" method="POST">
 		<button type="submit" name="submit">Sign out</button>
 		</form>';

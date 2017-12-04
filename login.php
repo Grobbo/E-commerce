@@ -28,7 +28,11 @@ mysqli_select_db($conn,$database);
 		if ($result->num_rows > 0) {
 			$hashed_password = mysqli_fetch_array($result)['user_password'];
 			if (password_verify($pw, $hashed_password)) {
-				$_SESSION['u_id'] = $us;
+				$_SESSION['u_name'] = $us;
+				
+				$sql = "SELECT id FROM  CUSTOMERS WHERE user_name = '$us';";
+				$res = $conn->query($sql);
+				$_SESSION['u_id'] = mysqli_fetch_array($res)['id'];
 				//add more parameters to session on demand.
 				header("Location: index.php");
 				exit();

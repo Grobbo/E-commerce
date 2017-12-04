@@ -1,6 +1,6 @@
  <?php
 
-if($_SERVER["REQUEST_METHOD"] == "GET"){	//lägg till -- if(array_key_exists('search_string',$_GET)){
+if($_SERVER["REQUEST_METHOD"] == "GET"){
 	
 	if(array_key_exists('request_type',$_GET)){
 		switch($_GET['request_type']){

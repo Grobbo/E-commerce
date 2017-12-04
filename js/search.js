@@ -28,7 +28,50 @@ function comment_request(id) {
 
 }
 
-//TODO SORT BY MENU...
+function add_to_cart(id){
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			var rjson = JSON.parse(this.responseText);
+			build_cart(rjson);
+		}
+	}
+	xhttp.open("GET","php/cart.php?id="+id ,true);
+	xhttp.send();
+	
+}
+
+function build_cart(list){									//TODO ta bort TH ? ta bort th för img.   
+															//TODO run on page load...
+		cart = document.getElementById("cart_content"); 
+		str = "\
+		<table>\
+			<tr>\
+				<th>img</th>\
+				<th>Product</th>\
+				<th>Quantity</th>\
+			<th>Price</th>\
+			</tr>";
+		var sum = 0;
+		for(i = 0; i <list.length;i++){
+				str += "<tr>" + "<td>" + "<img src = " + "'" + list[i].product.image +"'" + "/>"+ "</td>";
+				str += "<td>" + list[i].product.description + "</td>";
+				str += "<td>" + list[i].quantity + "</td>";
+				str += "<td>" + list[i].product.price + "</td>";
+				
+				str +="</tr>";
+				sum += parseInt(list[i].product.price);
+		}	
+			
+		str +=  "</table>	<hr width=90%><span id = 'sum'>placeholder for sum</span>";
+		
+		
+		cart.innerHTML = str;
+		document.getElementById("sum").innerHTML = "sum: " + sum;
+
+}
+
 function build_item_list(list){				
 
 	var node = document.getElementById("canvas");
@@ -65,22 +108,16 @@ function build_item_list(list){
 		pr = document.createElement("div");
 		pr.setAttribute("class","item_div");
 		pr.innerHTML = "Price: " + list[index].price + " SEK";
-
-			form = document.createElement("form");
-			form.setAttribute("action","php/cart.php");
-			form.setAttribute("method","POST");
-				input = document.createElement("input");
-				input.setAttribute("name","product_id");
-				input.setAttribute("type","hidden");
-				input.setAttribute("value",list[index].id);
-				button = document.createElement("button");
-				button.setAttribute("class","add_button");
-				button.setAttribute("type","submit");
-				button.innerHTML = "Add to Cart";
-			form.appendChild(input);
-			form.appendChild(button);
-		pr.appendChild(form);
 		
+		
+		addButton = document.createElement("Button");
+		addButton.setAttribute("type","button")
+		addButton.setAttribute("class","add_button");
+		addButton.setAttribute("value",list[index].id);
+		addButton.innerHTML = "Add to Cart";
+		addButton.onclick = function(){add_to_cart(this.value)};
+		pr.appendChild(addButton);
+
 		//TODO RATING..
 		rat = document.createElement("div");
 		rat.setAttribute("class","item_div");
