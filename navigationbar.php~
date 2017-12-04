@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <div class="header" id="header">
+		
 	<a href="index.php" class="dropbtn">Home</a>
+	
 	<div class="dropdown">	
 	<button class="dropbtn">Tools</button>
 		<div class="dropdown-content">
@@ -18,8 +20,16 @@
                  	<a href="#">Ludvig Isaksson</a>
                 </div class="dropdown">
 	</div>
+	<div class="dropdown">
+	<button class="dropcart">Shopping Cart</button>
+		<div class="dropdown-content">
+			<div class="cart_content" id="cart_content">
+				HeLLo
+			</div>
+		</div class="dropdown">
+	</div class="dropdown">
 	
-</div>
+
 
 
 <?php
@@ -35,12 +45,18 @@
 		<input type="password" name="user_password" placeholder="Password">
 		<button type="submit" name="sign_in">Log in</button>
 		</form>
-		<form class="dropdown" action="signup.php">	
+		<form class="dropdownform" action="signup.php">	
 		<button type="submit">Register user</button>
 		</form>
 	';
 	}
 
 ?>
+
+	<div class ="shopping_cart" id="shopping_cart">
+		<img src="images/shopping_cart.png" class="cart_img"/>
+	</div>
+
+</div>
 
 

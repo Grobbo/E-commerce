@@ -20,6 +20,17 @@
                  	<a href="#">Ludvig Isaksson</a>
                 </div class="dropdown">
 	</div>
+	<div class="dropdown">
+	<button class="dropcart">Shopping Cart</button>
+		<div class="dropdown-content">
+			<div class="cart_content" id="cart_content">
+				HeLLo
+			</div>
+			<div class="checkout">
+				<button>Checkout</button>
+			</div>
+		</div class="dropdown">
+	</div class="dropdown">
 	
 
 
