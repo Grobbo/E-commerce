@@ -24,8 +24,9 @@
 	<button class="dropcart">Shopping Cart</button>
 		<div class="dropdown-content">
 			<div class="cart_content" id="cart_content">
-				HeLLo
+				placeHolder for Cart...
 			</div>
+			<br>
 			<div class="checkout">
 				<button>Checkout</button>
 			</div>

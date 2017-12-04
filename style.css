@@ -32,6 +32,37 @@ body{
     text-decoration: none;
 
 }
+.cart_content img{
+	width:50px;
+	height:50px;
+}
+.cart_content th{
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#33cc33;
+	text-align:center;
+	padding-right:20px;
+	padding-left:20px;
+}
+.cart_content td{
+	text-align:center;
+}
+
+.cart_content table,tr{
+	border-collapse:collapse;
+	border:1px solid;
+}
+.cart_content tr:nth-child(odd){
+	background-color:#ffffff;
+}
+.sum{
+	float:right;
+	padding-right:20px;
+}
+.checkout{
+	float:right;
+	padding-right:18px;
+}
 
 .dropdown {
     display: inline-block;
@@ -50,7 +81,7 @@ body{
 .dropdown-content {
     display: none;
     position: absolute;
-	top:40px;					/*fixa så det funkar på olika upplösningar och webbläsare...*/			
+	top:40px;						/*fixa så det funkar på olika upplösningar och webbläsare...*/			
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

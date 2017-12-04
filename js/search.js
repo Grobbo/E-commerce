@@ -39,16 +39,16 @@ function add_to_cart(id){
 	}
 	xhttp.open("GET","php/cart.php?id="+id ,true);
 	xhttp.send();
-	
 }
 
-function build_cart(list){									//TODO ta bort TH ? ta bort th för img.   
+
+function build_cart(list){									
 															//TODO run on page load...
 		cart = document.getElementById("cart_content"); 
 		str = "\
 		<table>\
 			<tr>\
-				<th>img</th>\
+				<th></th>\
 				<th>Product</th>\
 				<th>Quantity</th>\
 			<th>Price</th>\
@@ -64,11 +64,11 @@ function build_cart(list){									//TODO ta bort TH ? ta bort th för img.
 				sum += parseInt(list[i].product.price);
 		}	
 			
-		str +=  "</table>	<hr width=90%><span id = 'sum'>placeholder for sum</span>";
+		str +=  "</table>	<span id = 'sum' class='sum'>placeholder for sum</span>";
 		
 		
 		cart.innerHTML = str;
-		document.getElementById("sum").innerHTML = "sum: " + sum;
+		document.getElementById("sum").innerHTML = "<b>sum: " + sum +"</b>";
 
 }
 
@@ -86,15 +86,7 @@ function build_item_list(list){
 		base = document.createElement("div");
 		base.setAttribute("id", list[index].id);
 		base.setAttribute("class","item_container");
-		base.onclick = function() {
-				if(this.lastChild.hasChildNodes()){
-					while(this.lastChild.hasChildNodes()){
-						this.lastChild.removeChild(this.lastChild.lastChild);
-					}
-				}else{
-					comment_request(this.id);		
-				}
-			}
+		
 		 
 		img = document.createElement("img");
 		img.setAttribute("class","image");
@@ -128,6 +120,15 @@ function build_item_list(list){
 		comment_icon.setAttribute("height","50");
 		comment_icon.setAttribute("width", "50");
 		comment_icon.setAttribute("alt", "NO IMAGE");
+		comment_icon.onclick = function() {
+				if(this.parentElement.lastChild.hasChildNodes()){
+					while(this.parentElement.lastChild.hasChildNodes()){
+						this.parentElement.lastChild.removeChild(this.parentElement.lastChild.lastChild);
+					}
+				}else{
+					comment_request(this.parentElement.id);		
+				}
+			}
 	
 		comment_box = document.createElement("div");
 		comment_box.setAttribute("id","comment_container");
@@ -148,17 +149,72 @@ function build_item_list(list){
 
 function comment_div_builder(commentsJson){
 	if(commentsJson.length > 0){	
-		comment = document.getElementById(commentsJson[0].product_id).lastChild;
+		var comment = document.getElementById(commentsJson[0].product_id).lastChild;
 		while (comment.firstChild) {
     			comment.removeChild(myNode.firstChild);
 		}
 		for(index = 0;index < commentsJson.length; index++){	
-		commentdiv = document.createElement("div");
-		commentdiv.setAttribute("class","comments");
-		commentdiv.innerHTML = commentsJson[index].comment_text + "<br>"; 
-		comment.appendChild(commentdiv);
+			if(commentsJson[index].super_id == null){		
+				var commentdiv = document.createElement("div");
+				commentdiv.setAttribute("class","comments");
+				commentdiv.setAttribute("id", commentsJson[index].id);
+				commentdiv.innerHTML = commentsJson[index].comment_text + "<br>";
+				var button = document.createElement("button");
+				button.innerHTML = "Add comment";				
+				button.onclick = function () { //function to make form for comment
+
+					var form = document.createElement("form");
+					form.setAttribute("name","comment_box");
+					form.style.margin = "10px";
+					form.setAttribute("action","/php/comments.php");
+					form.setAttribute("method","POST");
+					var textarea = document.createElement("textarea");
+					textarea.setAttribute("rows","10");
+					textarea.setAttribute("cols","30");
+					textarea.setAttribute("placeholder","Comment text");
+					var input = document.createElement("input");
+					input.setAttribute("type","submit");
+					form.appendChild(textarea);
+					form.appendChild(document.createElement("br"));
+					form.appendChild(input);
+					this.parentElement.parentElement.appendChild(form);
+					
+				};
+				commentdiv.appendChild(button);
+				comment.appendChild(commentdiv);
+				comment_on_comment_builder(commentdiv,commentsJson[index].id,50,commentsJson);
+			}
 		}
 	}
+	return;
+}
+
+
+
+function comment_on_comment_builder(div,id,margin,commentslist){	
+	for(var i = 0; i < commentslist.length; i++){
+		if(commentslist[i].super_id == id){
+			var comment = document.createElement("div");
+			comment.setAttribute("style","margin-left:"+margin);
+			var text = document.createElement("div");
+			text.innerHTML = commentslist[i].comment_text + "<br>";
+			var img = document.createElement("img");
+			img.src ="/images/comments_divider.png";
+			img.setAttribute("width","30px");
+			img.setAttribute("height","20px");			
+			comment.appendChild(img);
+			comment.appendChild(text);
+			var button = document.createElement("button");
+				button.innerHTML = "Add comment";				
+				button.onclick = function () {
+					alert("COMMENT");
+				};
+			comment.appendChild(button);
+			div.appendChild(comment);
+			comment_on_comment_builder(comment,commentslist[i].id,margin,commentslist);
+		}
+	} 
+	return;
 }
 
 function console_log(id){
