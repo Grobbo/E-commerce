@@ -48,7 +48,17 @@
 .comments {
 	background-color:#FFFFFF;
 	size:auto;
-	margin-left: 20px;
+	
 	font-size:20;
+<<<<<<< HEAD
+	border-radius: 0.5em;
+=======
+	padding: 10px;
+	border-radius: 0.5em;
 }
+.comments:nth-child(even){
+	background-color:#eeeeee;
+>>>>>>> d1ad87bd557512d7f5a194021ec9d1a338a7f06e
+}
+
 

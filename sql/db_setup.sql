@@ -70,49 +70,56 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	description,
 	quantity,
 	price,
-    image)
+    	image,
+	rating)
  VALUES ('SAW',
 	'BORSCH',
 	'USED FOR FINE SAWING',
 	4,
 	100,
-    '/images/fine_saw.png');
+    '/images/fine_saw.png',
+	2);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,
+	rating)
  VALUES ('SAW',
 	'MAKITA',
 	'USED FOR HEAVY-DUTY SAWING',
 	7,
-	250);
+	250,
+	4.5);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,
+	rating)
  VALUES ('SAW',
 	'COCRAFT',
 	'BASIC SAW',
 	3,
-	89);
+	89,
+	4);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,rating)
  VALUES ('SAW',
 	'BACHO',
 	'METAL SAW',
 	22,
-	349);
+	349,
+	5);
 /*
 
 */
@@ -121,12 +128,14 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	manufacturer,
 	description,
 	quantity,
-	price)
+	price,rating
+	)
  VALUES ('SAW',
 	'MISC',
 	'METAL SAW',
 	15,
-	200);
+	200,
+	1);
 
 /* SCREWDRIVERS */
 

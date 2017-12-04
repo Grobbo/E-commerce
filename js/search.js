@@ -1,4 +1,4 @@
-function search_request() {
+function search_request() {						//TODO sort by (rating / numratings.. for rating)
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
@@ -29,7 +29,7 @@ function comment_request(id) {
 }
 
 //TODO SORT BY MENU...
-function build_item_list(list){	
+function build_item_list(list){				
 
 	var node = document.getElementById("canvas");
 	while (node.firstChild) {

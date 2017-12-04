@@ -46,10 +46,12 @@
 	
 }
 .comments {
-	background-color:#FFFFFF;
 	size:auto;
-	margin-left: 20px;
 	font-size:20;
+	padding: 10px;
 	border-radius: 0.5em;
 }
+
+
+
 
