@@ -46,7 +46,7 @@ function product_json(){
 }
 
 function edit_product($id,$cat,$man,$desc,$price,$qty){
-	console.log("edit");
+	
 	$con = db_connect();
 
 	$sql = "UPDATE PRODUCTS SET category = '$cat',manufacturer = '$man', description = '$desc',price='$price',quantity='$qty'  WHERE id ='$id'";	

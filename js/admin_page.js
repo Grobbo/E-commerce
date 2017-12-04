@@ -1,4 +1,7 @@
-function selectForm(){
+function selectForm(value){
+	if(value == "edit_prod_form"){
+		product_request("UPDATE");
+	}
 	var select = document.getElementById("select_form");
 	for(var i=0;i<select.options.length;i++){
 		if(select.options[i].value == select.value){				
@@ -8,6 +11,7 @@ function selectForm(){
 			document.getElementById(select.options[i].value).style.display = "none";
 		}
 	}
+
 }
 
 function product_request(req_type,id,cat,man,desc,price,qty){	

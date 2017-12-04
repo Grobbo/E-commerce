@@ -3,15 +3,15 @@
 <link rel="stylesheet" type="text/css" href="admin_page.css">
 <script src="js/admin_page.js" type="text/javascript"></script>
 </head>
-<body onload="selectForm()">
+<body onload="selectForm('prod_form')">
 <?php
 include("navigationbar.php");
 ?>
 	<br>
 	<div class="management">
-	<select id="select_form" onchange="selectForm()">
+	<select id="select_form" onchange="selectForm(value)">
 		<option value="prod_form" >Add Product</option>		<!--Value matches form id -->
-		<option value="edit_prod_form" onclick="product_request('UPDATE')">Edit Product</option>
+		<option value="edit_prod_form">Edit Product</option>
 		
 	</select>
 
