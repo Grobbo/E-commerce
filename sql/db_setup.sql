@@ -186,3 +186,35 @@ INSERT INTO E_COMMERCE.COMMENTS(
     comment_text)
  VALUES (1,
 	"SUPER SAW");
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    super_id,
+    comment_text)
+ VALUES (1,
+	1,
+	"I dont think this is so great");
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    super_id,
+    comment_text)
+ VALUES (1,
+	1,
+	"neither to I");
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    super_id,
+    comment_text)
+ VALUES (1,
+	3,
+	"But i think its super great");
+    
+INSERT INTO E_COMMERCE.COMMENTS(
+	product_id,
+    super_id,
+    comment_text)
+ VALUES (1,
+	5,
+	"fix this comment");
