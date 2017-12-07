@@ -29,7 +29,7 @@ function getCurrentCart($user_id){
 		$product = $result->fetch_assoc();
 		$cart[$i]['product'] = $product;
 		
-		$sql = "SELECT COUNT(shopping_cart.id) from shopping_cart inner JOIN products on products.id = shopping_cart.product_id and products.id = '$prod_id' and user_id = '$user_id';";
+		$sql = "SELECT COUNT(*) from shopping_cart where product_id = '$prod_id' and user_id = '$user_id';";
 		$result = mysqli_query($con,$sql);
 		$numItems = $result->fetch_row()[0];
 		$cart[$i]['quantity'] = $numItems;
