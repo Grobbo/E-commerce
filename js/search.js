@@ -195,7 +195,7 @@ function comment_on_comment_builder(div,id,margin,commentslist){
 	for(var i = 0; i < commentslist.length; i++){
 		if(commentslist[i].super_id == id){
 			var comment = document.createElement("div");
-			comment.setAttribute("style","margin-left:"+margin);
+			comment.style.marginLeft = margin+"px";
 			var text = document.createElement("div");
 			text.innerHTML = commentslist[i].comment_text + "<br>";
 			var img = document.createElement("img");
@@ -209,7 +209,7 @@ function comment_on_comment_builder(div,id,margin,commentslist){
 				button.onclick = function () {
 					alert("COMMENT");
 				};
-			comment.appendChild(button);
+			comment.appendChild(button);			
 			div.appendChild(comment);
 			comment_on_comment_builder(comment,commentslist[i].id,margin,commentslist);
 		}

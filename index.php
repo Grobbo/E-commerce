@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <?php
 session_start();
 ?>
 <html>
 <head>
+<meta charset="utf-8">
 <title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="items.css">
 <script src="js/search.js" type="text/javascript"></script>
