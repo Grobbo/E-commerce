@@ -61,7 +61,7 @@ function build_cart(list){
 				str += "<td>" + list[i].product.price + "</td>";
 				
 				str +="</tr>";
-				sum += parseInt(list[i].product.price);
+				sum += (parseInt(list[i].product.price) * parseInt(list[i].quantity));
 		}	
 			
 		str +=  "</table>	<span id = 'sum' class='sum'>placeholder for sum</span>";

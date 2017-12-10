@@ -11,24 +11,30 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 function addToCart($user_id,$product_id){
 	$con = db_connect();
-	$sql = "INSERT INTO SHOPPING_CART (user_id,product_id,quantity) values ('$user_id','$product_id',1)";		//TODO change hardcoded value for quantity
+	$sql = "INSERT INTO SHOPPING_CART (user_id,product_id,quantity) values ('$user_id','$product_id',1)";		//TODO change hardcoded value for quantity and decrease quantity of product in db...
 	mysqli_query($con,$sql);
 	mysqli_close($con);
 }
 
 function getCurrentCart($user_id){
 	$con = db_connect();
-	$sql = "SELECT * FROM SHOPPING_CART where user_id = '$user_id'";
+	$sql = "SELECT DISTINCT product_id from shopping_cart where user_id = '$user_id';";
 	$result = mysqli_query($con,$sql);
-	$arr = mysqli_fetch_all($result,MYSQLI_BOTH);
-	for($i = 0; $i<count($arr);$i++){
-		$product_id = $arr[$i]['product_id'];
-		$sql = "SELECT * FROM PRODUCTS WHERE id = '$product_id'";
+	$products = mysqli_fetch_all($result,MYSQLI_ASSOC);		//id of distinct products in cart
+	$cart = array();
+	for($i = 0; $i<count($products);$i++){
+		$prod_id = $products[$i]['product_id'];
+		$sql  = "SELECT * from products where id = '$prod_id';";
 		$result = mysqli_query($con,$sql);
 		$product = $result->fetch_assoc();
 		$cart[$i]['product'] = $product;
-		$cart[$i]['quantity'] = $arr[$i]['quantity'];
+		
+		$sql = "SELECT COUNT(*) from shopping_cart where product_id = '$prod_id' and user_id = '$user_id';";
+		$result = mysqli_query($con,$sql);
+		$numItems = $result->fetch_row()[0];
+		$cart[$i]['quantity'] = $numItems;
 	}
+	
 	$json = json_encode($cart);
 	print $json;
 	mysqli_close($con);
