@@ -50,6 +50,21 @@ function getCurrentCart(){
 	xhttp.send();
 	
 }
+function checkout(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			//var rjson = JSON.parse(this.responseText);
+			alert(this.responseText);
+			getCurrentCart();
+		}
+	}
+	
+	num_items = numberOfCartItems();
+	xhttp.open("GET","php/checkout.php?num_items="+num_items ,true);
+	xhttp.send();
+}
+
 
 function build_cart(list){									
 		cart = document.getElementById("cart_content"); 
@@ -83,6 +98,7 @@ function build_cart(list){
 		
 		cart.innerHTML = str;
 		document.getElementById("sum").innerHTML = "<b>sum: " + sum +"</b>";
+		document.getElementById("checkoutDiv").innerHTML = "<button type = 'button' onclick='checkout()'>Checkout</button>"
 
 }
 function inc_quantity(id){
@@ -93,5 +109,13 @@ function inc_quantity(id){
 function dec_quantity(id){
 	id=id[3];				//workaround to not have same id on buttons...
 	remove_one_from_cart(id);
+}
+function numberOfCartItems(){
+	table = document.getElementById('cart_table');
+	item_count = 0;
+	for(i = 1; i<table.rows.length;i++){
+		item_count += parseInt(table.rows[i].cells[2].innerHTML);
+	}
+	return item_count;
 }
 
