@@ -18,23 +18,22 @@ function addToCart($user_id,$product_id){
 
 function getCurrentCart($user_id){
 	$con = db_connect();
-	$sql = "SELECT DISTINCT product_id from shopping_cart where user_id = '$user_id';";
+	$sql = "SELECT DISTINCT product_id from SHOPPING_CART where user_id = '$user_id';";
 	$result = mysqli_query($con,$sql);
 	$products = mysqli_fetch_all($result,MYSQLI_ASSOC);		//id of distinct products in cart
 	$cart = array();
 	for($i = 0; $i<count($products);$i++){
 		$prod_id = $products[$i]['product_id'];
-		$sql  = "SELECT * from products where id = '$prod_id';";
+		$sql  = "SELECT * from PRODUCTS where id = '$prod_id';";
 		$result = mysqli_query($con,$sql);
 		$product = $result->fetch_assoc();
 		$cart[$i]['product'] = $product;
 		
-		$sql = "SELECT COUNT(*) from shopping_cart where product_id = '$prod_id' and user_id = '$user_id';";
+		$sql = "SELECT COUNT(*) from SHOPPING_CART where product_id = '$prod_id' and user_id = '$user_id';";
 		$result = mysqli_query($con,$sql);
 		$numItems = $result->fetch_row()[0];
 		$cart[$i]['quantity'] = $numItems;
 	}
-	
 	$json = json_encode($cart);
 	print $json;
 	mysqli_close($con);
