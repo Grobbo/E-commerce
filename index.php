@@ -8,8 +8,9 @@ session_start();
 <title>E-commerce site for tools </title>
 <link rel="stylesheet" type="text/css" href="items.css">
 <script src="js/search.js" type="text/javascript"></script>
+<script src="js/cart.js" type="text/javascript"></script>
 </head>
-<body>
+<body onload="getCurrentCart()">
 
 <?php
 include "navigationbar.php";

@@ -28,50 +28,6 @@ function comment_request(id) {
 
 }
 
-function add_to_cart(id){
-	
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) { 
-			var rjson = JSON.parse(this.responseText);
-			build_cart(rjson);
-		}
-	}
-	xhttp.open("GET","php/cart.php?id="+id ,true);
-	xhttp.send();
-}
-
-
-function build_cart(list){									
-															//TODO run on page load...
-		cart = document.getElementById("cart_content"); 
-		str = "\
-		<table>\
-			<tr>\
-				<th></th>\
-				<th>Product</th>\
-				<th>Quantity</th>\
-			<th>Price</th>\
-			</tr>";
-		var sum = 0;
-		for(i = 0; i <list.length;i++){
-				str += "<tr>" + "<td>" + "<img src = " + "'" + list[i].product.image +"'" + "/>"+ "</td>";
-				str += "<td>" + list[i].product.description + "</td>";
-				str += "<td>" + list[i].quantity + "</td>";
-				str += "<td>" + list[i].product.price + "</td>";
-				
-				str +="</tr>";
-				sum += (parseInt(list[i].product.price) * parseInt(list[i].quantity));
-		}	
-			
-		str +=  "</table>	<span id = 'sum' class='sum'>placeholder for sum</span>";
-		
-		
-		cart.innerHTML = str;
-		document.getElementById("sum").innerHTML = "<b>sum: " + sum +"</b>";
-
-}
-
 function build_item_list(list){				
 
 	var node = document.getElementById("canvas");
