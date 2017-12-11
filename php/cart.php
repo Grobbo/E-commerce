@@ -2,10 +2,16 @@
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
 	session_start();
-	$product_id = $_GET['id'];
 	$user_id = $_SESSION['u_id'];
-	addToCart($user_id,$product_id);
-	getCurrentCart($user_id);
+	if($_GET['request']=="ADD"){
+		$product_id = $_GET['id'];
+		addToCart($user_id,$product_id);
+		getCurrentCart($user_id);
+	}
+	if($_GET['request']=="FETCH"){
+		getCurrentCart($user_id);
+	}
+	
 }
 
 

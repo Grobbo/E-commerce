@@ -37,10 +37,23 @@ function add_to_cart(id){
 			build_cart(rjson);
 		}
 	}
-	xhttp.open("GET","php/cart.php?id="+id ,true);
+	xhttp.open("GET","php/cart.php?request=ADD&id="+id ,true);
 	xhttp.send();
 }
 
+function getCurrentCart(){
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			var rjson = JSON.parse(this.responseText);
+			build_cart(rjson);
+		}
+	}
+	xhttp.open("GET","php/cart.php?request=FETCH" ,true);
+	xhttp.send();
+	
+}
 
 function build_cart(list){									
 															//TODO run on page load...

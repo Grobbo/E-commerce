@@ -7,7 +7,7 @@ session_start();
 <link rel="stylesheet" type="text/css" href="items.css">
 <script src="js/search.js" type="text/javascript"></script>
 </head>
-<body>
+<body onload="getCurrentCart()">
 
 <?php
 include "navigationbar.php";
