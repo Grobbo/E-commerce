@@ -148,47 +148,59 @@ function build_item_list(list){
 }
 
 function comment_div_builder(commentsJson){
-	if(commentsJson.length > 0){	
+	if(commentsJson.length > 0 && commentsJson[0] != "none"){	
 		var comment = document.getElementById(commentsJson[0].product_id).lastChild;
-		while (comment.firstChild) {
-    			comment.removeChild(myNode.firstChild);
+		while (comment.hasChildNodes()) {
+    			comment.removeChild(comment.lastChild);
 		}
 		for(index = 0;index < commentsJson.length; index++){	
 			if(commentsJson[index].super_id == null){		
 				var commentdiv = document.createElement("div");
 				commentdiv.setAttribute("class","comments");
 				commentdiv.setAttribute("id", commentsJson[index].id);
+				commentdiv.setAttribute("prodid",commentsJson[index].product_id);
 				commentdiv.innerHTML = commentsJson[index].comment_text + "<br>";
 				var button = document.createElement("button");
 				button.innerHTML = "Add comment";				
 				button.onclick = function () { //function to make form for comment
-
-					var form = document.createElement("form");
-					form.setAttribute("name","comment_box");
-					form.style.margin = "10px";
-					form.setAttribute("action","/php/comments.php");
-					form.setAttribute("method","POST");
-					var textarea = document.createElement("textarea");
-					textarea.setAttribute("rows","10");
-					textarea.setAttribute("cols","30");
-					textarea.setAttribute("placeholder","Comment text");
-					var input = document.createElement("input");
-					input.setAttribute("type","submit");
-					form.appendChild(textarea);
-					form.appendChild(document.createElement("br"));
-					form.appendChild(input);
-					this.parentElement.parentElement.appendChild(form);
-					
+										
+					this.parentNode.replaceChild(comment_form_builder(this.parentNode.getAttribute("id"),this.parentNode.getAttribute("prodid")),this);
 				};
 				commentdiv.appendChild(button);
+
 				comment.appendChild(commentdiv);
 				comment_on_comment_builder(commentdiv,commentsJson[index].id,50,commentsJson);
 			}
 		}
+		comment.appendChild(comment_form_builder(null,commentsJson[0].product_id));
+					
+	}else{
+		var comment = document.getElementById(commentsJson[1]).lastChild;
+		
+		comment.appendChild(comment_form_builder(null,commentsJson[1]));
 	}
-	return;
 }
 
+function comment_form_builder(id, prodid){
+	var form = document.createElement("div");
+	form.setAttribute("id",id);
+	form.setAttribute("prodid",prodid);
+	form.style.margin = "10px";
+	var textarea = document.createElement("input");
+	textarea.setAttribute("type","text");
+	textarea.setAttribute("name","text")
+	textarea.setAttribute("placeholder","Comment text");
+	var button = document.createElement("button");
+	button.innerHTML = "Confirm";
+	form.appendChild(textarea);
+	form.appendChild(document.createElement("br"));
+	form.appendChild(button);
+	button.onclick = function () {	
+	comment_post_req(this.parentNode.getAttribute("prodid"),this.parentNode.id,this.parentNode.firstChild.value);	
+	};
+	
+	return form;
+}
 
 
 function comment_on_comment_builder(div,id,margin,commentslist){	
@@ -196,6 +208,8 @@ function comment_on_comment_builder(div,id,margin,commentslist){
 		if(commentslist[i].super_id == id){
 			var comment = document.createElement("div");
 			comment.style.marginLeft = margin+"px";
+			comment.setAttribute("id",commentslist[i].id);
+			comment.setAttribute("prodid",commentslist[i].product_id);
 			var text = document.createElement("div");
 			text.innerHTML = commentslist[i].comment_text + "<br>";
 			var img = document.createElement("img");
@@ -207,7 +221,7 @@ function comment_on_comment_builder(div,id,margin,commentslist){
 			var button = document.createElement("button");
 				button.innerHTML = "Add comment";				
 				button.onclick = function () {
-					alert("COMMENT");
+					this.parentNode.replaceChild(comment_form_builder(this.parentNode.getAttribute("id"),this.parentNode.getAttribute("prodid")),this);
 				};
 			comment.appendChild(button);			
 			div.appendChild(comment);
@@ -219,4 +233,20 @@ function comment_on_comment_builder(div,id,margin,commentslist){
 
 function console_log(id){
 	console.log("Item ID "+ id);
+}
+
+function comment_post_req(prodid,sid,text){
+	var http = new XMLHttpRequest();
+	var url = "php/comments.php";
+	var str = "prodid="+prodid+"&sid="+sid+"&text="+text+"&comment=true";	
+	http.open("POST", url, true);
+
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	http.onreadystatechange = function() {
+	    if(http.readyState == 4 && http.status == 200) {
+		comment_request(this.responseText);
+	    }
+	}
+	http.send(str);
 }
