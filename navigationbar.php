@@ -27,8 +27,8 @@
 				placeHolder for Cart...
 			</div>
 			<br>
-			<div class="checkout">
-				<button>Checkout</button>
+			<div class="checkout" id="checkoutDiv">
+				
 			</div>
 		</div class="dropdown">
 	</div class="dropdown">
