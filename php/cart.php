@@ -11,6 +11,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 	if($_GET['request']=="FETCH"){
 		getCurrentCart($user_id);
 	}
+	if($_GET['request']=="REMOVE"){
+		$product_id = $_GET['id'];
+		remove_one_from_cart($user_id,$product_id);
+		getCurrentCart($user_id);
+	}
 	
 }
 
@@ -18,6 +23,13 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 function addToCart($user_id,$product_id){
 	$con = db_connect();
 	$sql = "INSERT INTO SHOPPING_CART (user_id,product_id,quantity) values ('$user_id','$product_id',1)";		//TODO change hardcoded value for quantity and decrease quantity of product in db...
+	mysqli_query($con,$sql);
+	mysqli_close($con);
+}
+
+function remove_one_from_cart($user_id,$product_id){
+	$con = db_connect();
+	$sql = "DELETE FROM SHOPPING_CART where product_id = '$product_id' and user_id = '$user_id' LIMIT 1;";		//TODO change hardcoded value for quantity and decrease quantity of product in db...
 	mysqli_query($con,$sql);
 	mysqli_close($con);
 }
