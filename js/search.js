@@ -1,4 +1,4 @@
-function search_request() {						//TODO sort by (rating / numratings.. for rating)
+function search_request() {						
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
@@ -26,6 +26,29 @@ function comment_request(id) {
 	xhttp.open("GET","php/comments.php?id="+id ,true);
 	xhttp.send();
 
+}
+
+function rating_set(prodid,rat){
+	var http = new XMLHttpRequest();
+	var url = "php/rating.php";
+	var str = "prodid="+prodid+"&rating="+rat;	
+	http.open("POST", url, true);
+
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	http.onreadystatechange = function() {
+	    if(http.readyState == 4 && http.status == 200) {
+		var rjson = JSON.parse(this.responseText);		
+		update_rating(rjson);
+	    }
+	}
+	http.send(str);
+
+}
+
+function update_rating(json){	
+	update = document.getElementById("rating"+json[0].id);
+	update.innerHTML = "RatingAvg: "+ (json[0].rating/json[0].num_ratings).toFixed(3) + "<br>" + "Number of Ratings :" + json[0].num_ratings;
 }
 
 function build_item_list(list){				
@@ -68,8 +91,27 @@ function build_item_list(list){
 
 		//TODO RATING..
 		rat = document.createElement("div");
-		rat.setAttribute("class","item_div");
-		rat.innerHTML = "RatingAvg: " + list[index].rating + "<br>" + "Number of Ratings :" + "200";	//TODO Change from 200 to ...
+		rat.setAttribute("class","item_div");		
+		var select = document.createElement("select");
+		for(var i = 0; i <= 5 ; i++){
+			var opt = document.createElement("option");
+			opt.setAttribute("value", i);
+			opt.innerHTML = i;
+			select.appendChild(opt);
+		}
+		var ratbut = document.createElement("button");
+		ratbut.innerHTML = "Rate";
+		ratbut.onclick = function () {
+			rating_set(this.parentNode.parentNode.id,this.parentNode.firstChild.value);
+			
+		}; 		
+		rat.appendChild(select);
+		rat.appendChild(ratbut);
+		var ratavg = document.createElement("p");
+		ratavg.setAttribute("id","rating"+list[index].id);
+		ratavg.innerHTML = "RatingAvg: "+ (list[index].rating/list[index].num_ratings).toFixed(3) + "<br>" + "Number of Ratings :" + list[index].num_ratings;
+		rat.appendChild(ratavg);
+		
 		
 		comment_icon = document.createElement("img");
 		comment_icon.src ="/images/comments.png";
