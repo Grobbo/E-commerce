@@ -67,7 +67,7 @@ function build_cart(list){
 			</tr>";//th left empty for formating...
 		var sum = 0;
 		for(i = 0; i <list.length;i++){
-				str += "<tr id= " + "'" + list[i].product.id +"'" + " >" + "<td>" + "<img src = " + "'" + list[i].product.image +"'" + "/>"+ "</td>";
+				str += "<tr>" + "<td>" + "<img src = " + "'" + list[i].product.image +"'" + "/>"+ "</td>";
 				str += "<td>" + list[i].product.description + "</td>";
 				str += "<td>" + list[i].quantity + "</td>";
 				str += "<td>" + list[i].product.price + "</td>";
