@@ -1,8 +1,9 @@
+
 .management{
-	background-color:#f2f2f2;
+	
 	width:50%;
 	float:left;
-	border-radius:10px;
+	
 	
 }
 .add_product_text{
@@ -48,15 +49,38 @@
 .management td{
 	text-align:center;
 }
-.management tr:nth-child(odd){
-	background-color:#ffffff;
+.management tr:nth-child(even){
+	background-color:#f2f2f2;
 }
 
 
 .statistics{
-	background-color:#00ff00;
+	
 	width:50%;
-	height:200px;
 	float:left;
+	
 	text-align:center;
+}
+.statistics table{
+	margin:0 auto;
+}
+.statistics table,tr{
+	border-collapse:collapse;
+	border:1px solid;
+}
+
+.statistics th{
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#33cc33;
+	text-align:center;
+	padding-left:10px;
+	padding-right:20px;
+}
+
+.statistics td{
+	text-align:center;
+}
+.statistics tr:nth-child(even){
+	background-color:#f2f2f2;
 }
