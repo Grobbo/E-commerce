@@ -15,6 +15,22 @@ function search_request() {
 
 }
 
+function tool_request(str) {						
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			var rjson = JSON.parse(this.responseText);
+			build_item_list(rjson);
+				
+		}
+	}
+	xhttp.open("GET", "php/handle_request.php?search_string="
+	+ str +"&criteria="+str+"&sortBy=null",true);
+	xhttp.send();
+	return false;
+
+}
+
 function comment_request(id) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {

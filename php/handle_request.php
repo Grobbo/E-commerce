@@ -68,6 +68,24 @@ if (!$con) {
 		$sql="SELECT * FROM PRODUCTS WHERE category = '$search_str' ORDER BY $sort";
 		$result = mysqli_query($con,$sql);	
 	}
+	else if($criteria == 'hammers'){
+		$sql="SELECT * FROM PRODUCTS WHERE category = 'hammer'";
+		$result = mysqli_query($con,$sql);	
+	}
+	else if($criteria == 'all'){
+		$sql="SELECT * FROM PRODUCTS";
+		$result = mysqli_query($con,$sql);	
+	}
+	else if($criteria == 'saws'){
+		$sql="SELECT * FROM PRODUCTS WHERE category = 'saw'";
+		$result = mysqli_query($con,$sql);	
+	}
+	else if($criteria == 'screwdrivers'){
+		$sql="SELECT * FROM PRODUCTS WHERE category = 'screwdriver'";
+		$result = mysqli_query($con,$sql);	
+	}
+
+	
 	$row_array = array();
 	while($row = mysqli_fetch_array($result)) {
 	  $row_array[] = $row;
