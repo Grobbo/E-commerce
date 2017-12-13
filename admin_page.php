@@ -3,10 +3,61 @@
 <link rel="stylesheet" type="text/css" href="admin_page.css">
 <script src="js/admin_page.js" type="text/javascript"></script>
 </head>
-<body onload="selectForm('prod_form');getShipments();">
 <?php
-include("adminnav.php");
+
+session_start();
+
+$servername = "localhost";
+$username = "ecom";
+$password = "ecom";
+$database = "E_COMMERCE";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Select DB.
+mysqli_select_db($conn,$database);
+
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		if(array_key_exists('password',$_POST)){
+			$query = "SELECT password FROM E_COMMERCE.ADMIN;";
+			$pw = $_POST['password'];
+			$result = $conn->query($query);
+			if ($result->num_rows > 0) {
+				$passwd = mysqli_fetch_array($result)['password'];
+				if($passwd === $_POST['password']){
+					$_SESSION['admin'] = "true";
+				} 
+			}
+			
+		}
+
+	}
+ 
+	if(isset($_SESSION['admin'])){
+		echo '<form class="dropdownform" action="php/sign_out.php" method="POST">
+		<button type="submit" name="submit">Sign out and return to main page</button>
+		</form>';
+		
+	}else{
+		echo '<form class="dropdownform" action="admin_page.php" method="POST">
+		<input type="password" name="password" placeholder="Password">
+		<button type="submit" name="sign_in">Log in</button>
+		</form>';
+		exit();
+	}
+
 ?>
+
+<!-- DIN KOD FRÅN HÄR LUDDE -->
+<body onload="selectForm('prod_form');getShipments();">
+
+
 	<br>
 	<div class="management">
 	<select id="select_form" onchange="selectForm(value)">
@@ -38,7 +89,7 @@ include("adminnav.php");
 		<span id ='shipment_placeholder'></span>
 		<button type ='button' onclick='getShipments()'>Refresh Table</button>
 		<br>
-		<input type='input' id='shipment_id_input' placeholder = 'search orders by id' onkeypress=" if (event.keyCode==13) search_orders();"></input>
+		<input type='input' id='shipment_id_input' placeholder = 'search orders by id' onkeypress=" if 			(event.keyCode==13) search_orders();"></input>
 
 		<button type='button' onclick='search_orders();'>Search Orders</button>
 		<span id ='order_placeholder'></span>
