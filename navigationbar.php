@@ -17,7 +17,7 @@
 	<button class="dropcart">Shopping Cart</button>
 		<div class="dropdown-content">
 			<div class="cart_content" id="cart_content">
-				placeHolder for Cart...
+				Cart Empty
 			</div>
 			<br>
 			<div class="checkout" id="checkoutDiv">

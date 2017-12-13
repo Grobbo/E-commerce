@@ -39,11 +39,7 @@ include("navigationbar.php");
 		<button type ='button' onclick='getShipments()'>Refresh Table</button>
 		<br>
 		<input type='input' id='shipment_id_input' placeholder = 'search orders by id' onkeypress=" if (event.keyCode==13) search_orders();"></input>
-		<select>
-			<option value="opt1">Shipment ID</option>
-			<option value="opt2">Customer ID</option>
 
-		</select>
 		<button type='button' onclick='search_orders();'>Search Orders</button>
 		<span id ='order_placeholder'></span>
 		
