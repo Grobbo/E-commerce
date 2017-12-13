@@ -108,4 +108,65 @@ function getCellTextVal(table,id,cell){
 		
 		return txtVal;
 }
+
+function getShipments(){
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			var rjson = JSON.parse(this.responseText);
+			build_shipments(rjson);	
+			
+		}
+	}
+		
+	xhttp.open("GET", "php/admin_request.php?request_type=GETSHIPMENTS",true);
+	xhttp.send();
+}
+function build_shipments(list){
+	
+	var str ="<table><tr><th>Shipment id</th><th>Order Date</th><th>Customer</th></tr>";
+	for(i=0;i< list.length;i++){
+		str += "<tr>";
+			str += "<td>" + list[i].shipment_id + "</td>";
+			str += "<td>" + list[i].order_date + "</td>";
+			str += "<td>" + list[i].customer + "</td>";
+		str += "</tr>";
+	}
+	str+= "</table>";
+	document.getElementById('shipment_placeholder').innerHTML = str;
+}
+
+function search_orders(){
+	input = document.getElementById('shipment_id_input').value;
+	getOrders(input);
+}
+
+function getOrders(input){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) { 
+			
+			var rjson = JSON.parse(this.responseText);
+			build_orders(rjson);	
+			
+		}
+	}
+	xhttp.open("GET", "php/admin_request.php?request_type=GETORDERS&search_id="+input,true);
+	xhttp.send();
+}
+function build_orders(list){
+	var str ="<table><tr><th>Product id</th><th>Shipment ID</th><th>Quantity</th></tr>";
+	for(i=0;i< list.length;i++){
+		str += "<tr>";
+			
+			str += "<td>" + list[i].product_id + "</td>";
+			str += "<td>" + list[i].shipment_id + "</td>";
+			str += "<td>" + list[i].quantity + "</td>";
+			
+		str += "</tr>";
+	}
+	str+= "</table>";
+	document.getElementById('order_placeholder').innerHTML = str;
+}
  

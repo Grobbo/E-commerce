@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="admin_page.css">
 <script src="js/admin_page.js" type="text/javascript"></script>
 </head>
-<body onload="selectForm('prod_form')">
+<body onload="selectForm('prod_form');getShipments();">
 <?php
 include("navigationbar.php");
 ?>
@@ -33,8 +33,19 @@ include("navigationbar.php");
 
 	</div>
 	<div class="statistics">
-		<h1>Statistics...</h1><br>
-		<h3>Placed Orders:</h3>
+		<h1>Statistics</h1><br>
+		<h3>Shipments:</h3>
+		<span id ='shipment_placeholder'></span>
+		<button type ='button' onclick='getShipments()'>Refresh Table</button>
+		<br>
+		<input type='input' id='shipment_id_input' placeholder = 'search orders by id' onkeypress=" if (event.keyCode==13) search_orders();"></input>
+		<select>
+			<option value="opt1">Shipment ID</option>
+			<option value="opt2">Customer ID</option>
+
+		</select>
+		<button type='button' onclick='search_orders();'>Search Orders</button>
+		<span id ='order_placeholder'></span>
 		
 	</div>
 

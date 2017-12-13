@@ -15,6 +15,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 				delete_product($_GET['id']);
 				product_json();
 				break;
+			case "GETORDERS":
+				getOrders($_GET['search_id']);
+				break;
+			case "GETSHIPMENTS":
+				getShipments();
+				break;
 		}
 
 	}
@@ -61,6 +67,35 @@ function delete_product($id){
 
 	$sql = "DELETE FROM PRODUCTS WHERE id = '$id' ";
 	mysqli_query($con,$sql);
+	mysqli_close($con);
+	
+}
+function getShipments(){
+	$con = db_connect();
+
+	$sql = "SELECT * FROM SHIPMENTS";
+	$result = mysqli_query($con,$sql);
+	$row_array = array();
+	while($row = mysqli_fetch_array($result)){
+		$row_array[] = $row;
+	}
+	$json = json_encode($row_array);
+	print $json;
+	mysqli_close($con);
+}
+function getOrders($shipment_id){
+	$con = db_connect();
+
+	//count of each product: SELECT product_id,shipment_id, COUNT(*) FROM ORDERS WHERE shipment_id = 1 GROUP BY product_id;
+
+	$sql = "SELECT product_id,shipment_id, COUNT(*) as quantity FROM ORDERS WHERE shipment_id = '$shipment_id' GROUP BY product_id;";
+	$result = mysqli_query($con,$sql);
+	$row_array = array();
+	while($row = mysqli_fetch_array($result)){
+		$row_array[] = $row;
+	}
+	$json = json_encode($row_array);
+	print $json;
 	mysqli_close($con);
 	
 }
