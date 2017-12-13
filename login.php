@@ -33,7 +33,7 @@ mysqli_select_db($conn,$database);
 				$sql = "SELECT id FROM  CUSTOMERS WHERE user_name = '$us';";
 				$res = $conn->query($sql);
 				$_SESSION['u_id'] = mysqli_fetch_array($res)['id'];
-				//add more parameters to session on demand.
+				//add more parameters to session id needed.
 				header("Location: index.php");
 				exit();
 			}else{

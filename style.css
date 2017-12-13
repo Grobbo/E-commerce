@@ -19,7 +19,17 @@ body{
     text-decoration: none;
 
 }
+.dropbtn1 {
+    background-color: #FFFFFF;
+    color: black;
+    padding: 7px;
+	padding-top:10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 
+}
 .dropcart {
     float:right;
     background-color: #aaaaaa;
@@ -81,7 +91,7 @@ body{
 .dropdown-content {
     display: none;
     position: absolute;
-	top:40px;						/*fixa så det funkar på olika upplösningar och webbläsare...*/			
+	top:35px;						/*fixa så det funkar på olika upplösningar och webbläsare...*/			
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

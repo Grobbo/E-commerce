@@ -5,7 +5,7 @@
 </head>
 <body onload="selectForm('prod_form')">
 <?php
-include("navigationbar.php");
+include("adminnav.php");
 ?>
 	<br>
 	<div class="management">

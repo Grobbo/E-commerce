@@ -7,10 +7,10 @@
 	<div class="dropdown">	
 	<button class="dropbtn">Tools</button>
 		<div class="dropdown-content">
-			<a href="javascript:tool_request('all');">All</a>
-			<a href="javascript:tool_request('hammers');">Hammers</a>
-   		 	<a href="javascript:tool_request('saws');">Saws</a>
-   		 	<a href="javascript:tool_request('screwdrivers');">Screwdrivers</a>
+			<button class="dropbtn1" onclick="tool_request('all');">All</button><br>
+			<button class="dropbtn1" onclick="tool_request('hammers');">Hammers</button><br>
+			<button class="dropbtn1" onclick="tool_request('saws');">Saws</button><br>
+			<button class="dropbtn1" onclick="tool_request('all');">Screwdriver</button><br>
   		</div class="dropdown">
 	</div>
 	<div class="dropdown">
