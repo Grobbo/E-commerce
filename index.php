@@ -27,7 +27,7 @@ include "php/add_user.php";
 	<select name="sortBy" id="sortBy">
 		<option value="price">Price(Ascending)</option>
 		<option value="price desc">Price(Descending)</option>
-		<option value="rating desc">Rating</option>
+		<option value="rating/num_ratings desc">Rating</option>
 	</select>
 
 	<button type="submit" onclick="search_request()" >Search</button>
