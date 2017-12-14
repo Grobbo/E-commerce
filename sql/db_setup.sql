@@ -23,7 +23,7 @@ CREATE TABLE E_COMMERCE.PRODUCTS(
 	price float NOT NULL CHECK(price>0),
 	rating float NOT NULL DEFAULT 0.0,
 	num_ratings int NOT NULL DEFAULT 0,
-    image varchar(256) DEFAULT '/images/nia.png'
+ 	image varchar(256) DEFAULT '/images/nia.png'
 );
 
 CREATE TABLE E_COMMERCE.SHIPMENTS(
@@ -84,7 +84,7 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	4,
 	100,
     '/images/fine_saw.png',
-	2);
+	0);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
@@ -98,7 +98,7 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	'USED FOR HEAVY-DUTY SAWING',
 	7,
 	250,
-	4.5);
+	0);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
@@ -112,7 +112,7 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	'BASIC SAW',
 	3,
 	89,
-	4);
+	0);
 
 INSERT INTO E_COMMERCE.PRODUCTS(
 	category,
@@ -125,7 +125,7 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	'METAL SAW',
 	22,
 	349,
-	5);
+	0);
 /*
 
 */
@@ -141,7 +141,7 @@ INSERT INTO E_COMMERCE.PRODUCTS(
 	'METAL SAW',
 	15,
 	200,
-	1);
+	0);
 
 /* SCREWDRIVERS */
 
