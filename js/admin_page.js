@@ -125,12 +125,17 @@ function getShipments(){
 }
 function build_shipments(list){
 	
-	var str ="<table><tr><th>Shipment id</th><th>Order Date</th><th>Customer</th></tr>";
+	var str ="<table><tr><th>Shipment id</th><th>Order Date</th><th>Customer id</th><th>username</th><th>First name</th><th>Last name</th><th>Address</th></tr>";
 	for(i=0;i< list.length;i++){
 		str += "<tr>";
+			
 			str += "<td>" + list[i].shipment_id + "</td>";
 			str += "<td>" + list[i].order_date + "</td>";
 			str += "<td>" + list[i].customer + "</td>";
+			str += "<td>" + list[i].user_name + "</td>";
+			str += "<td>" + list[i].first_name + "</td>";
+			str += "<td>" + list[i].last_name + "</td>";
+			str += "<td>" + list[i].address + "</td>";
 		str += "</tr>";
 	}
 	str+= "</table>";

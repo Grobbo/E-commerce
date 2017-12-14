@@ -73,7 +73,7 @@ function delete_product($id){
 function getShipments(){
 	$con = db_connect();
 
-	$sql = "SELECT * FROM SHIPMENTS";
+	$sql = "SELECT shipment_id,order_date,customer,user_name,first_name,last_name,address FROM CUSTOMERS join SHIPMENTS on id = SHIPMENTS.customer;";
 	$result = mysqli_query($con,$sql);
 	$row_array = array();
 	while($row = mysqli_fetch_array($result)){

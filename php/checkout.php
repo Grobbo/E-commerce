@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 function checkout($user_id,$num_items){
 	$con = db_connect();
-	//mysqli_begin_transaction($con, MYSQLI_TRANS_START_READ_WRITE);		
+	mysqli_begin_transaction($con, MYSQLI_TRANS_START_READ_WRITE);		
 	
 	$sql1 = "INSERT INTO SHIPMENTS (order_date,customer) values (NOW(),'$user_id')";	
 	mysqli_query($con,$sql1);						//create new shipment...
@@ -30,6 +30,7 @@ function checkout($user_id,$num_items){
 	mysqli_query($con,$sql3);
 	$sql4 = "DELETE FROM SHOPPING_CART WHERE user_id = '$user_id';";
 	mysqli_query($con,$sql4);
+	mysqli_commit($con);
 }
 
 function db_connect(){
