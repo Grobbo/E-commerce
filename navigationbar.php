@@ -10,7 +10,7 @@
 			<button class="dropbtn1" onclick="tool_request('all');">All</button><br>
 			<button class="dropbtn1" onclick="tool_request('hammers');">Hammers</button><br>
 			<button class="dropbtn1" onclick="tool_request('saws');">Saws</button><br>
-			<button class="dropbtn1" onclick="tool_request('all');">Screwdriver</button><br>
+			<button class="dropbtn1" onclick="tool_request('screwdrivers');">Screwdriver</button><br>
   		</div class="dropdown">
 	</div>
 	<div class="dropdown">
