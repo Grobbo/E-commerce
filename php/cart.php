@@ -5,8 +5,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 	$user_id = $_SESSION['u_id'];
 	if($_GET['request']=="ADD"){
 		$product_id = $_GET['id'];
-		addToCart($user_id,$product_id);
-		getCurrentCart($user_id);
+		if(addToCart($user_id,$product_id)){
+			getCurrentCart($user_id);
+		}else{
+			print "ERROR";
+		}
 	}
 	if($_GET['request']=="FETCH"){
 		getCurrentCart($user_id);
@@ -22,14 +25,29 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 function addToCart($user_id,$product_id){
 	$con = db_connect();
-	$sql = "INSERT INTO SHOPPING_CART (user_id,product_id,quantity) values ('$user_id','$product_id',1)";		//TODO change hardcoded value for quantity and decrease quantity of product in db...
-	mysqli_query($con,$sql);
+	$sql = "SELECT quantity FROM PRODUCTS WHERE id = '$product_id'";
+	$result = mysqli_query($con,$sql);
+	$row = mysqli_fetch_assoc($result);
+	$quantity = $row['quantity'];
+	
+	if($quantity > 0){
+		$sql = "INSERT INTO SHOPPING_CART (user_id,product_id,quantity) values ('$user_id','$product_id',1)";		
+		mysqli_query($con,$sql);
+		$sql = "UPDATE PRODUCTS SET QUANTITY = QUANTITY -1 WHERE id = '$product_id'";
+		mysqli_query($con,$sql);
+	}else{
+		return false;
+	}
+
 	mysqli_close($con);
+	return true;
 }
 
 function remove_one_from_cart($user_id,$product_id){
 	$con = db_connect();
-	$sql = "DELETE FROM SHOPPING_CART where product_id = '$product_id' and user_id = '$user_id' LIMIT 1;";		//TODO change hardcoded value for quantity and decrease quantity of product in db...
+	$sql = "DELETE FROM SHOPPING_CART where product_id = '$product_id' and user_id = '$user_id' LIMIT 1;";
+	mysqli_query($con,$sql);
+	$sql = "UPDATE PRODUCTS SET QUANTITY = QUANTITY +1 WHERE id = '$product_id'";
 	mysqli_query($con,$sql);
 	mysqli_close($con);
 }

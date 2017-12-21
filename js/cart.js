@@ -3,8 +3,14 @@ function add_to_cart(id){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) { 
-			var rjson = JSON.parse(this.responseText);
-			build_cart(rjson);
+			if(this.responseText == "ERROR"){
+				alert("Item out of stock");
+			}else{
+				
+				var rjson = JSON.parse(this.responseText);
+				build_cart(rjson);
+			}
+
 		}
 	}
 	xhttp.open("GET","php/cart.php?request=ADD&id="+id ,true);
